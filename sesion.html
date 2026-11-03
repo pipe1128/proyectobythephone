@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Encuentra tu próximo celular en Bythephone. Tecnología, buenos precios y atención cercana."
+    />
+    <meta name="theme-color" content="#f5f6f8" />
+    <title>Bythephone | Tecnología que te conecta</title>
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="sesion.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="sesion.html" data-section-link aria-label="Bythephone, ir al inicio">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span>Bythe<span class="brand-light">phone</span></span>
+        </a>
+        <nav class="main-nav" id="mainNav" aria-label="Navegación principal">
+          <a href="sesion.html" id="loginNavLink">Iniciar sesión</a>
+          <a href="inicio.html" data-section-link>Inicio</a>
+          <a href="#catalogo" data-section-link>Catálogo</a>
+          <a href="#ubicacion" data-section-link>Tienda</a>
+        </nav>
+      </div>
+    </header>
+    <section class="login-screen" id="loginScreen" aria-labelledby="loginTitle">
+      <div class="login-visual" aria-hidden="true">
+        <div class="login-visual-copy">
+          <span class="eyebrow">BYTHEPHONE · TECNOLOGÍA QUE TE CONECTA</span>
+          <h1>Tu próxima conexión comienza aquí.</h1>
+        </div>
+      </div>
+      <div class="login-panel">
+        <div class="login-content">
+          <span class="eyebrow login-kicker">ACCESO DE CLIENTES</span>
+          <h2 id="loginTitle">Inicia sesión</h2>
+          <p class="login-intro">Ingresa con tu correo registrado para acceder a la tienda.</p>
+          <form class="login-form" id="loginForm" onsubmit="location.hash = 'inicio'; return false;">
+            <label for="loginEmail">Correo electrónico</label>
+            <input
+              id="loginEmail"
+              name="email"
+              type="email"
+              autocomplete="username"
+              placeholder="tu@correo.com"
+              required
+            />
+            <label for="loginPassword">Contraseña</label>
+            <input
+              id="loginPassword"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Ingresa tu contraseña"
+              required
+            />
+            <button class="button button-primary login-submit" type="submit">
+              Iniciar Sesión <span aria-hidden="true">→</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
