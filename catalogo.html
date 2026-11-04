@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explora celulares por marca, precio y especificaciones. Consulta disponibilidad con Bythephone."
+    />
+    <meta name="theme-color" content="#f5f6f8" />
+    <title>Catálogo de celulares | Bythephone</title>
+    <link rel="stylesheet" href="catalogo.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="inicio.html#inicio" aria-label="Bythephone, ir al inicio">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span>Bythe<span class="brand-light">phone</span></span>
+        </a>
+        <nav class="main-nav" aria-label="Navegación principal">
+          <a href="sesion.html">Iniciar sesión</a>
+          <a href="inicio.html#inicio">Inicio</a>
+          <a href="#catalogo" aria-current="page">Catálogo</a>
+          <a href="inicio.html#ubicacion">Tienda</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="catalog-hero">
+        <div class="catalog-hero-inner">
+          <a class="back-link" href="inicio.html#inicio">← Volver al inicio</a>
+          <span class="eyebrow">SELECCIÓN BYTHEPHONE</span>
+          <h1>Encuentra el celular<br />que va contigo.</h1>
+          <p>Compara marcas y especificaciones. Escríbenos para confirmar precio y disponibilidad.</p>
+        </div>
+      </section>
+
+      <section class="catalog-section" id="catalogo" aria-labelledby="catalogTitle">
+        <div class="catalog-layout">
+          <aside class="filter-panel" aria-label="Filtros del catálogo">
+            <div class="filter-heading">
+              <div>
+                <span class="eyebrow">PERSONALIZA TU BÚSQUEDA</span>
+                <h2>Filtros</h2>
+              </div>
+              <button class="reset-button" id="resetFilters" type="reset" form="catalogFilters">
+                Limpiar
+              </button>
+            </div>
+
+            <form id="catalogFilters">
+              <label class="filter-label" for="brandFilter">Marca</label>
+              <select id="brandFilter" name="brand">
+                <option value="">Todas las marcas</option>
+              </select>
+
+              <fieldset class="filter-group">
+                <legend>Rango de precio (COP)</legend>
+                <div class="price-range">
+                  <label>
+                    <span class="visually-hidden">Precio mínimo</span>
+                    <input id="minPrice" name="minPrice" type="number" min="0" inputmode="numeric" placeholder="Desde" />
+                  </label>
+                  <span aria-hidden="true">—</span>
+                  <label>
+                    <span class="visually-hidden">Precio máximo</span>
+                    <input id="maxPrice" name="maxPrice" type="number" min="0" inputmode="numeric" placeholder="Hasta" />
+                  </label>
+                </div>
+              </fieldset>
+
+              <label class="filter-label" for="osFilter">Sistema operativo</label>
+              <select id="osFilter" name="os">
+                <option value="">Cualquiera</option>
+                <option value="Android">Android</option>
+                <option value="iOS">iOS</option>
+              </select>
+
+              <label class="filter-label" for="ramFilter">Memoria RAM mínima</label>
+              <select id="ramFilter" name="ram">
+                <option value="0">Cualquiera</option>
+                <option value="4">4 GB o más</option>
+                <option value="6">6 GB o más</option>
+                <option value="8">8 GB o más</option>
+                <option value="12">12 GB o más</option>
+              </select>
+
+              <label class="filter-label" for="storageFilter">Almacenamiento mínimo</label>
+              <select id="storageFilter" name="storage">
+                <option value="0">Cualquiera</option>
+                <option value="128">128 GB o más</option>
+                <option value="256">256 GB o más</option>
+                <option value="512">512 GB o más</option>
+              </select>
+
+              <label class="check-option" for="fiveGFilter">
+                <input id="fiveGFilter" name="fiveG" type="checkbox" />
+                <span>Compatible con 5G</span>
+              </label>
+            </form>
+
+            <p class="filter-note">Los precios y la disponibilidad se confirman directamente con la tienda.</p>
+          </aside>
+
+          <div class="catalog-results">
+            <div class="results-heading">
+              <div>
+                <span class="eyebrow">CATÁLOGO DE EQUIPOS</span>
+                <h2 id="catalogTitle">Celulares para cada día</h2>
+              </div>
+              <div class="results-controls">
+                <p id="resultsCount" role="status" aria-live="polite"></p>
+                <label class="sort-control" for="sortFilter">
+                  <span>Ordenar:</span>
+                  <select id="sortFilter" name="sort">
+                    <option value="featured">Recomendados</option>
+                    <option value="price-asc">Menor precio</option>
+                    <option value="price-desc">Mayor precio</option>
+                    <option value="name">Nombre</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <div class="product-grid" id="productGrid" aria-live="polite"></div>
+            <div class="empty-state" id="emptyState" hidden>
+              <span class="empty-icon" aria-hidden="true">⌕</span>
+              <h3>No encontramos coincidencias</h3>
+              <p>Prueba cambiando o limpiando algunos filtros.</p>
+              <button class="button button-primary" type="reset" form="catalogFilters">Limpiar filtros</button>
+            </div>
+
+            <p class="catalog-disclaimer">
+              Referencias y precios de muestra para explorar el catálogo. Confirma el precio final, color y existencias con nuestro equipo.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a class="brand footer-brand" href="inicio.html#inicio">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span>Bythe<span class="brand-light">phone</span></span>
+        </a>
+        <p>Tecnología que te conecta.</p>
+        <a class="social-link" href="https://wa.me/573015379982" target="_blank" rel="noopener noreferrer">
+          Escríbenos por WhatsApp <span aria-hidden="true">↗</span>
+        </a>
+        <span>© Bythephone. Hecho para estar conectados.</span>
+      </div>
+    </footer>
+
+    <dialog class="product-dialog" id="productDialog" aria-labelledby="dialogTitle">
+      <div class="dialog-shell">
+        <div class="dialog-header">
+          <span class="eyebrow">FICHA DEL EQUIPO</span>
+          <button class="icon-button" id="closeDialog" type="button" aria-label="Cerrar ficha">×</button>
+        </div>
+        <div class="dialog-content" id="dialogContent"></div>
+      </div>
+    </dialog>
+
+    <script>
+      const products = [
+        {
+          id: "samsung-a55",
+          brand: "Samsung",
+          name: "Galaxy A55 5G",
+          price: 1899900,
+          os: "Android",
+          ram: 8,
+          storage: 256,
+          fiveG: true,
+          screen: "6.6 pulgadas Super AMOLED, 120 Hz",
+          camera: "Principal 50 MP con estabilización óptica",
+          battery: "5.000 mAh, carga rápida de 25 W",
+          processor: "Exynos 1480",
+          description: "Pantalla fluida, cámara versátil y conectividad 5G.",
+          images: [
+            "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=1000&q=85",
+            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=85",
+            "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=1000&q=85"
+          ]
+        },
+        {
+          id: "iphone-13",
+          brand: "Apple",
+          name: "iPhone 13",
+          price: 2399900,
+          os: "iOS",
+          ram: 4,
+          storage: 128,
+          fiveG: true,
+          screen: "6.1 pulgadas Super Retina XDR OLED",
+          camera: "Sistema dual de 12 MP con modo Noche",
+          battery: "Reproducción de video hasta 19 horas",
+          processor: "Chip A15 Bionic",
+          description: "Diseño resistente, gran cámara y rendimiento A15.",
+          images: [
+            "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=1000&q=85",
+            "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=1000&q=85",
+            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=85"
+          ]
+        },
+        {
+          id: "xiaomi-redmi-note-13",
+          brand: "Xiaomi",
+          name: "Redmi Note 13 Pro 5G",
+          price: 1499900,
+          os: "Android",
+          ram: 8,
+          storage: 256,
+          fiveG: true,
+          screen: "6.67 pulgadas AMOLED, 120 Hz",
+          camera: "Principal de 200 MP con estabilización óptica",
+          battery: "5.100 mAh, carga turbo de 67 W",
+          processor: "Snapdragon 7s Gen 2",
+          description: "Alta resolución y carga rápida para todos los días.",
+          images: [
+            "https://images.unsplash.com/photo-1605236453806-6ff36851218e?auto=format&fit=crop&w=1000&q=85",
+            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=85",
+            "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=1000&q=85"
+          ]
+        },
+        {
+          id: "motorola-edge-50",
+          brand: "Motorola",
+          name: "Edge 50 Fusion",
+          price: 1399900,
+          os: "Android",
+          ram: 8,
+          storage: 256,
+          fiveG: true,
+          screen: "6.7 pulgadas pOLED, 144 Hz",
+          camera: "Principal de 50 MP con sensor Sony LYTIA",
+          battery: "5.000 mAh, TurboPower de 68 W",
+          processor: "Snapdragon 7s Gen 2",
+          description: "Pantalla envolvente y cámara con estabilización óptica.",
+          images: [
+            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=85",
+            "https://images.unsplash.com/photo-1605236453806-6ff36851218e?auto=format&fit=crop&w=1000&q=85",
+            "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=1000&q=85"
+          ]
+        },
+        {
+          id: "samsung-a35",
+          brand: "Samsung",
+          name: "Galaxy A35 5G",
+          price: 1199900,
+          os: "Android",
+          ram: 8,
+          storage: 128,
+          fiveG: true,
+          screen: "6.6 pulgadas Super AMOLED, 120 Hz",
+          camera: "Principal de 50 MP con estabilización óptica",
+          battery: "5.000 mAh, carga rápida de 25 W",
+          processor: "Exynos 1380",
+          description: "Una experiencia equilibrada con pantalla amplia.",
+          images: [
+            "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=1000&q=85",
+            "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=1000&q=85",
+            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=85"
+          ]
+        },
+        {
+          id: "xiaomi-redmi-13",
+          brand: "Xiaomi",
+          name: "Redmi Note 13",
+          price: 799900,
+          os: "Android",
+          ram: 8,
+          storage: 256,
+          fiveG: false,
+          screen: "6.67 pulgadas AMOLED, 120 Hz",
+          camera: "Principal de 108 MP",
+          battery: "5.000 mAh, carga rápida de 33 W",
+          processor: "MediaTek Helio G99-Ultra",
+          description: "Pantalla AMOLED y amplio almacenamiento.",
+          images: [
+            "https://images.unsplash.com/photo-1605236453806-6ff36851218e?auto=format&fit=crop&w=1000&q=85",
+            "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=1000&q=85",
+            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=85"
+          ]
+        },
+        {
+          id: "motorola-g84",
+          brand: "Motorola",
+          name: "Moto G84 5G",
+          price: 899900,
+          os: "Android",
+          ram: 8,
+          storage: 256,
+          fiveG: true,
+          screen: "6.5 pulgadas pOLED, 120 Hz",
+          camera: "Principal de 50 MP con estabilización óptica",
+          battery: "5.000 mAh, TurboPower de 30 W",
+          processor: "Snapdragon 695 5G",
+          description: "Diseño ligero con conectividad 5G y pantalla pOLED.",
+          images: [
+            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=85",
+            "https://images.unsplash.com/photo-1605236453806-6ff36851218e?auto=format&fit=crop&w=1000&q=85",
+            "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=1000&q=85"
+          ]
+        },
+        {
+          id: "iphone-15",
+          brand: "Apple",
+          name: "iPhone 15",
+          price: 3599900,
+          os: "iOS",
+          ram: 6,
+          storage: 128,
+          fiveG: true,
+          screen: "6.1 pulgadas Super Retina XDR OLED",
+          camera: "Principal de 48 MP con teleobjetivo 2x",
+          battery: "Reproducción de video hasta 20 horas",
+          processor: "Chip A16 Bionic",
+          description: "Cámara avanzada de 48 MP y conexión USB-C.",
+          images: [
+            "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?auto=format&fit=crop&w=1000&q=85",
+            "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=1000&q=85",
+            "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=1000&q=85"
+          ]
+        }
+      ];
+
+      const productGrid = document.querySelector("#productGrid");
+      const filters = document.querySelector("#catalogFilters");
+      const resultsCount = document.querySelector("#resultsCount");
+      const emptyState = document.querySelector("#emptyState");
+      const sortFilter = document.querySelector("#sortFilter");
+      const productDialog = document.querySelector("#productDialog");
+      const dialogContent = document.querySelector("#dialogContent");
+      const copFormatter = new Intl.NumberFormat("es-CO", {
+        style: "currency",
+        currency: "COP",
+        maximumFractionDigits: 0
+      });
+
+      function formatPrice(price) {
+        return copFormatter.format(price);
+      }
+
+      function renderProducts() {
+        const formData = new FormData(filters);
+        const brand = formData.get("brand");
+        const minPrice = Number(formData.get("minPrice")) || 0;
+        const maxPrice = Number(formData.get("maxPrice")) || Infinity;
+        const os = formData.get("os");
+        const minRam = Number(formData.get("ram")) || 0;
+        const minStorage = Number(formData.get("storage")) || 0;
+        const requires5G = formData.has("fiveG");
+        const sortBy = sortFilter.value;
+
+        const matchingProducts = products
+          .filter((product) =>
+            (!brand || product.brand === brand) &&
+            product.price >= minPrice &&
+            product.price <= maxPrice &&
+            (!os || product.os === os) &&
+            product.ram >= minRam &&
+            product.storage >= minStorage &&
+            (!requires5G || product.fiveG)
+          )
+          .sort((a, b) => {
+            if (sortBy === "price-asc") return a.price - b.price;
+            if (sortBy === "price-desc") return b.price - a.price;
+            if (sortBy === "name") return a.name.localeCompare(b.name, "es");
+            return products.indexOf(a) - products.indexOf(b);
+          });
+
+        productGrid.innerHTML = matchingProducts.map((product) => `
+          <article class="product-card">
+            <button
+              class="product-card-open"
+              type="button"
+              data-open-product="${product.id}"
+              aria-label="Ver ficha técnica de ${product.brand} ${product.name}"
+            >
+              <span class="product-image-wrap">
+                <img src="${product.images[0]}" alt="${product.brand} ${product.name}" loading="lazy" />
+                <span class="stock-label">Consulta disponibilidad</span>
+              </span>
+              <span class="product-content">
+                <span class="product-brand">${product.brand}</span>
+                <span class="product-name" role="heading" aria-level="3">${product.name}</span>
+                <span class="product-price">${formatPrice(product.price)}</span>
+                <span class="product-description">${product.description}</span>
+                <span class="product-meta">${product.ram} GB RAM · ${product.storage} GB${product.fiveG ? " · 5G" : ""}</span>
+                <span class="product-link">Ver ficha técnica <span aria-hidden="true">↗</span></span>
+              </span>
+            </button>
+          </article>
+        `).join("");
+
+        const countLabel = matchingProducts.length === 1 ? "equipo" : "equipos";
+        resultsCount.textContent = `${matchingProducts.length} ${countLabel}`;
+        emptyState.hidden = matchingProducts.length > 0;
+        productGrid.hidden = matchingProducts.length === 0;
+      }
+
+      function renderDetails(product) {
+        dialogContent.dataset.productId = product.id;
+        const specs = [
+          ["Pantalla", product.screen],
+          ["Procesador", product.processor],
+          ["Cámara", product.camera],
+          ["Batería", product.battery],
+          ["Sistema", product.os],
+          ["Memoria RAM", `${product.ram} GB`],
+          ["Almacenamiento", `${product.storage} GB`],
+          ["Conectividad", product.fiveG ? "5G" : "4G LTE"]
+        ];
+
+        dialogContent.innerHTML = `
+          <div class="detail-gallery">
+            <div class="detail-main-image">
+              <img src="${product.images[0]}" alt="${product.brand} ${product.name}, imagen 1" />
+            </div>
+            <div class="detail-thumbnails" aria-label="Imágenes del producto">
+              ${product.images.map((image, index) => `
+                <button
+                  class="thumbnail-button${index === 0 ? " is-active" : ""}"
+                  type="button"
+                  data-image-index="${index}"
+                  aria-label="Ver imagen ${index + 1} de ${product.name}"
+                  aria-pressed="${index === 0}"
+                >
+                  <img src="${image}" alt="" />
+                </button>
+              `).join("")}
+            </div>
+          </div>
+          <div class="detail-info">
+            <span class="product-brand">${product.brand}</span>
+            <h2 id="dialogTitle">${product.name}</h2>
+            <p class="detail-price">${formatPrice(product.price)}</p>
+            <p class="availability"><span aria-hidden="true">●</span> Disponibilidad por confirmar en tienda</p>
+            <p class="detail-description">${product.description}</p>
+            <div class="detail-tabs" role="tablist" aria-label="Información del equipo">
+              <button
+                class="detail-tab is-active"
+                id="overviewTab"
+                type="button"
+                role="tab"
+                aria-selected="true"
+                aria-controls="overviewPanel"
+                data-detail-tab="overview"
+              >Resumen</button>
+              <button
+                class="detail-tab"
+                id="specsTab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="specsPanel"
+                data-detail-tab="specs"
+              >Especificaciones</button>
+            </div>
+            <div class="detail-panel" id="overviewPanel" role="tabpanel" aria-labelledby="overviewTab">
+              <ul class="highlight-list">
+                <li>${product.screen}</li>
+                <li>${product.camera}</li>
+                <li>${product.ram} GB de RAM y ${product.storage} GB de almacenamiento</li>
+              </ul>
+            </div>
+            <div class="detail-panel" id="specsPanel" role="tabpanel" aria-labelledby="specsTab" hidden>
+              <dl class="spec-list">
+                ${specs.map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`).join("")}
+              </dl>
+            </div>
+            <a
+              class="button button-primary detail-contact"
+              href="https://wa.me/573015379982?text=${encodeURIComponent(`Hola, quiero consultar el precio y disponibilidad del ${product.brand} ${product.name}.`)}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Consultar este equipo <span aria-hidden="true">↗</span>            </a>
+          </div>
+        `;
+      }
+
+      [...new Set(products.map((product) => product.brand))].forEach((brand) => {
+        const option = document.createElement("option");
+        option.value = brand;
+        option.textContent = brand;
+        document.querySelector("#brandFilter").append(option);
+      });
+
+      filters.addEventListener("input", renderProducts);
+      filters.addEventListener("change", renderProducts);
+      sortFilter.addEventListener("change", renderProducts);
+
+      document.querySelectorAll('[type="reset"][form="catalogFilters"]').forEach((button) => {
+        button.addEventListener("click", () => {
+          requestAnimationFrame(renderProducts);
+        });
+      });
+
+      productGrid.addEventListener("click", (event) => {
+        const openButton = event.target.closest("[data-open-product]");
+        if (!openButton) return;
+
+        const product = products.find((item) => item.id === openButton.dataset.openProduct);
+        if (!product) return;
+        renderDetails(product);
+        productDialog.showModal();
+      });
+
+      dialogContent.addEventListener("click", (event) => {
+        const imageButton = event.target.closest("[data-image-index]");
+        if (imageButton) {
+          const imageIndex = Number(imageButton.dataset.imageIndex);
+          const product = products.find((item) => item.id === dialogContent.dataset.productId);
+          if (!product) return;
+
+          const mainImage = dialogContent.querySelector(".detail-main-image img");
+          mainImage.src = product.images[imageIndex];
+          mainImage.alt = `${product.brand} ${product.name}, imagen ${imageIndex + 1}`;
+          dialogContent.querySelectorAll(".thumbnail-button").forEach((thumbnail, index) => {
+            thumbnail.classList.toggle("is-active", index === imageIndex);
+            thumbnail.setAttribute("aria-pressed", String(index === imageIndex));
+          });
+          return;
+        }
+
+        const tabButton = event.target.closest("[data-detail-tab]");
+        if (!tabButton) return;
+
+        const showSpecs = tabButton.dataset.detailTab === "specs";
+        dialogContent.querySelector("#overviewPanel").hidden = showSpecs;
+        dialogContent.querySelector("#specsPanel").hidden = !showSpecs;
+        dialogContent.querySelectorAll(".detail-tab").forEach((tab) => {
+          const isSelected = tab === tabButton;
+          tab.classList.toggle("is-active", isSelected);
+          tab.setAttribute("aria-selected", String(isSelected));
+        });
+      });
+
+      document.querySelector("#closeDialog").addEventListener("click", () => productDialog.close());
+      productDialog.addEventListener("click", (event) => {
+        if (event.target === productDialog) productDialog.close();
+      });
+
+      renderProducts();
+    </script>
+  </body>
+</html>
