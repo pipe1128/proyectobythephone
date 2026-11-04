@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Checkout de demostración independiente con cálculo estimado de envíos Bythephone."
+    />
+    <meta name="theme-color" content="#f5f6f8" />
+    <title>Checkout y envío | Bythephone</title>
+    <link rel="stylesheet" href="envio.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="inicio.html#inicio" aria-label="Bythephone, ir al inicio">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span>Bythe<span class="brand-light">phone</span></span>
+        </a>
+        <nav class="main-nav" aria-label="Navegación principal">
+          <a href="sesion.html">Iniciar sesión</a>
+          <a href="inicio.html#inicio">Inicio</a>
+          <a href="catalogo.html">Catálogo</a>
+          <a href="envio.html" aria-current="page">Envío</a>
+          <a href="inicio.html#ubicacion">Tienda</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="checkout-hero">
+        <div class="checkout-hero-inner">
+          <a class="back-link" href="inicio.html">← Volver al inicio</a>
+          <span class="eyebrow">CHECKOUT INDEPENDIENTE</span>
+          <h1>Tu pedido, listo para seguir.</h1>
+          <p>Agrega ítems de muestra, calcula un estimado de envío y revisa el total antes de continuar.</p>
+        </div>
+      </section>
+
+      <section class="checkout-section" id="checkout" aria-label="Finalizar pedido">
+        <div class="demo-notice" role="note">
+          <span class="notice-icon" aria-hidden="true">i</span>
+          <p>
+            <strong>Checkout de demostración independiente.</strong> Los ítems y tarifas son de muestra.
+            No se conecta al catálogo ni a un inventario, y los pagos no se procesan. No ingreses datos de tarjeta ni realices transferencias.
+          </p>
+        </div>
+
+        <form class="checkout-layout" id="checkoutForm">
+          <div class="checkout-form-column">
+            <section class="checkout-card" aria-labelledby="deliveryTitle">
+              <div class="card-heading">
+                <span class="step-number">01</span>
+                <div>
+                  <span class="eyebrow">DÓNDE LO RECIBES</span>
+                  <h2 id="deliveryTitle">Dirección de entrega</h2>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <label class="field field-wide" for="recipientName">
+                  Nombre de quien recibe
+                  <input id="recipientName" name="recipientName" autocomplete="name" required />
+                </label>
+                <label class="field" for="recipientEmail">
+                  Correo electrónico
+                  <input id="recipientEmail" name="recipientEmail" type="email" autocomplete="email" required />
+                </label>
+                <label class="field" for="recipientPhone">
+                  Teléfono
+                  <input
+                    id="recipientPhone"
+                    name="recipientPhone"
+                    type="tel"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    pattern="[0-9]{7,15}"
+                    title="Ingresa un número de teléfono válido."
+                    required
+                  />
+                </label>
+                <label class="field" for="department">
+                  Departamento
+                  <select id="department" name="department" required>
+                    <option value="">Selecciona un departamento</option>
+                    <option>Antioquia</option>
+                    <option>Atlántico</option>
+                    <option>Bogotá D. C.</option>
+                    <option>Bolívar</option>
+                    <option>Boyacá</option>
+                    <option>Caldas</option>
+                    <option>Cundinamarca</option>
+                    <option>Magdalena</option>
+                    <option>Nariño</option>
+                    <option>Norte de Santander</option>
+                    <option>Quindío</option>
+                    <option>Risaralda</option>
+                    <option>Santander</option>
+                    <option>Tolima</option>
+                    <option>Valle del Cauca</option>
+                    <option value="other">Otro departamento de Colombia</option>
+                  </select>
+                </label>
+                <label class="field" for="city">
+                  Ciudad o municipio
+                  <input id="city" name="city" autocomplete="address-level2" required />
+                </label>
+                <label class="field field-wide" for="streetAddress">
+                  Dirección
+                  <input
+                    id="streetAddress"
+                    name="streetAddress"
+                    autocomplete="street-address"
+                    placeholder="Calle, carrera, número y barrio"
+                    required
+                  />
+                </label>
+                <label class="field field-wide" for="addressNotes">
+                  Indicaciones adicionales <span class="optional">(opcional)</span>
+                  <textarea id="addressNotes" name="addressNotes" rows="2" placeholder="Apartamento, torre o referencia"></textarea>
+                </label>
+              </div>
+
+              <div class="shipping-quote" id="shippingQuote" aria-live="polite">
+                <span class="shipping-icon" aria-hidden="true">⌖</span>
+                <div>
+                  <strong id="shippingZone">Calcula tu envío</strong>
+                  <p id="shippingDescription">Selecciona departamento y ciudad o municipio.</p>
+                </div>
+                <span class="shipping-price" id="shippingPrice">—</span>
+              </div>
+              <p class="shipping-disclaimer">
+                Estimado de demostración, calculado por departamento y ciudad. La tarifa y cobertura reales deben confirmarse con el transportador.
+              </p>
+            </section>
+
+            <section class="checkout-card" aria-labelledby="paymentTitle">
+              <div class="card-heading">
+                <span class="step-number">02</span>
+                <div>
+                  <span class="eyebrow">CÓMO QUIERES PAGAR</span>
+                  <h2 id="paymentTitle">Método de pago</h2>
+                </div>
+              </div>
+              <p class="payment-demo-note">
+                Elige un método para completar la simulación. No se conectará a una pasarela ni se cobrará dinero.
+              </p>
+              <fieldset class="payment-options">
+                <legend class="visually-hidden">Método de pago de demostración</legend>
+                <label class="payment-option">
+                  <input type="radio" name="paymentMethod" value="Tarjeta (simulación)" required />
+                  <span class="payment-icon" aria-hidden="true">▤</span>
+                  <span><strong>Tarjeta</strong><small>Requeriría una pasarela segura</small></span>
+                  <span class="radio-mark" aria-hidden="true"></span>
+                </label>
+                <label class="payment-option">
+                  <input type="radio" name="paymentMethod" value="Transferencia (simulación)" />
+                  <span class="payment-icon" aria-hidden="true">⇄</span>
+                  <span><strong>Transferencia</strong><small>No se muestran datos bancarios</small></span>
+                  <span class="radio-mark" aria-hidden="true"></span>
+                </label>
+                <label class="payment-option">
+                  <input type="radio" name="paymentMethod" value="Pago al recibir (simulación)" />
+                  <span class="payment-icon" aria-hidden="true">⌂</span>
+                  <span><strong>Pago al recibir</strong><small>Sujeto a cobertura y confirmación</small></span>
+                  <span class="radio-mark" aria-hidden="true"></span>
+                </label>
+              </fieldset>
+            </section>
+          </div>
+
+          <aside class="order-summary checkout-card" aria-labelledby="summaryTitle">
+            <div class="card-heading summary-heading">
+              <span class="step-number">03</span>
+              <div>
+                <span class="eyebrow">ARTÍCULOS DE MUESTRA</span>
+                <h2 id="summaryTitle">Resumen del pedido</h2>
+              </div>
+            </div>
+            <p class="sample-note">Esta lista se administra aquí y no proviene de otro apartado.</p>
+            <div class="add-item-row">
+              <label class="field" for="sampleProduct">
+                Agregar ítem de muestra
+                <select id="sampleProduct">
+                  <option value="">Selecciona un equipo</option>
+                </select>
+              </label>
+              <button class="button button-outline add-item-button" id="addSampleItem" type="button">Agregar</button>
+            </div>
+            <div class="summary-items" id="summaryItems"></div>
+            <p class="empty-order-note" id="emptyOrderNote">Agrega al menos un ítem de muestra para ver el total.</p>
+            <div class="summary-totals">
+              <p><span>Subtotal</span><strong id="subtotalAmount">$ 0</strong></p>
+              <p><span>Envío</span><strong id="shippingAmount">Por calcular</strong></p>
+              <p class="total-row"><span>Total estimado</span><strong id="totalAmount">$ 0</strong></p>
+            </div>
+            <label class="terms-option" for="demoAcknowledgement">
+              <input id="demoAcknowledgement" name="demoAcknowledgement" type="checkbox" required />
+              <span>Entiendo que este pedido y el pago son solo una demostración.</span>
+            </label>
+            <p class="checkout-error" id="checkoutError" role="alert" hidden></p>
+            <button class="button button-primary place-order-button" id="placeOrder" type="submit">
+              Confirmar pedido de demostración <span aria-hidden="true">→</span>
+            </button>
+            <p class="secure-note">No se generará un cargo ni un comprobante de pago válido.</p>
+          </aside>
+        </form>
+
+        <section class="receipt-card" id="receiptCard" aria-labelledby="receiptTitle" tabindex="-1" hidden>
+          <div class="receipt-topline">
+            <span class="receipt-status"><span aria-hidden="true">✓</span> Pedido de demostración creado</span>
+            <span class="receipt-mark" aria-hidden="true">B</span>
+          </div>
+          <span class="eyebrow">COMPROBANTE NO VÁLIDO COMO PAGO NI FACTURA</span>
+          <h2 id="receiptTitle">Gracias por probar el checkout.</h2>
+          <p class="receipt-intro">No se realizó ningún cobro ni se confirmó una compra real.</p>
+          <dl class="receipt-details" id="receiptDetails"></dl>
+          <div class="receipt-items" id="receiptItems"></div>
+          <div class="receipt-total">
+            <span>Total estimado (incluye envío)</span>
+            <strong id="receiptTotal"></strong>
+          </div>
+          <div class="receipt-actions">
+            <button class="button button-outline" id="printReceipt" type="button">Imprimir comprobante</button>
+            <a class="button button-primary" href="inicio.html">Volver al inicio</a>
+          </div>
+          <p class="receipt-footnote">Para habilitar pagos reales se requiere configurar una pasarela, tarifas verificadas y un servidor seguro que confirme las órdenes.</p>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a class="brand footer-brand" href="inicio.html#inicio">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span>Bythe<span class="brand-light">phone</span></span>
+        </a>
+        <p>Tecnología que te conecta.</p>
+        <a class="social-link" href="https://wa.me/573015379982" target="_blank" rel="noopener noreferrer">
+          Escríbenos por WhatsApp <span aria-hidden="true">↗</span>
+        </a>
+        <span>© Bythephone. Hecho para estar conectados.</span>
+      </div>
+    </footer>
+
+    <script>
+      const sampleProducts = [
+        { id: "phone-basic", brand: "Bythephone", name: "Celular de muestra", price: 799900 },
+        { id: "phone-mid", brand: "Bythephone", name: "Celular 5G de muestra", price: 1499900 },
+        { id: "phone-premium", brand: "Bythephone", name: "Celular premium de muestra", price: 2399900 }
+      ];
+      const cart = [];
+      const form = document.querySelector("#checkoutForm");
+      const cityInput = document.querySelector("#city");
+      const departmentSelect = document.querySelector("#department");
+      const shippingQuote = document.querySelector("#shippingQuote");
+      const checkoutError = document.querySelector("#checkoutError");
+      const copFormatter = new Intl.NumberFormat("es-CO", {
+        style: "currency",
+        currency: "COP",
+        maximumFractionDigits: 0
+      });
+
+      function money(amount) {
+        return copFormatter.format(amount);
+      }
+
+      function normalize(value) {
+        return value.trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+      }
+
+      function escapeHtml(value) {
+        return String(value).replace(/[&<>"']/g, (character) => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        })[character]);
+      }
+
+      function getShippingQuote() {
+        const city = normalize(cityInput.value);
+        const department = departmentSelect.value;
+        if (!city || !department) return null;
+
+        if (department === "Antioquia" && city === "girardota") {
+          return {
+            zone: "Entrega local · Girardota",
+            description: "Estimado local para Girardota, Antioquia.",
+            amount: 8000,
+            eta: "1 a 2 días hábiles (estimado)"
+          };
+        }
+
+        if (department === "Antioquia") {
+          return {
+            zone: "Envío departamental · Antioquia",
+            description: "Estimado para otros municipios de Antioquia.",
+            amount: 15000,
+            eta: "2 a 4 días hábiles (estimado)"
+          };
+        }
+
+        return {
+          zone: "Envío nacional · Colombia",
+          description: "Estimado nacional para Colombia.",
+          amount: 25000,
+          eta: "3 a 7 días hábiles (estimado)"
+        };
+      }
+
+      function renderCart() {
+        const summaryItems = document.querySelector("#summaryItems");
+        const productsInCart = cart.map((item) => ({
+          ...sampleProducts.find((product) => product.id === item.id),
+          quantity: item.quantity
+        }));
+
+        summaryItems.innerHTML = productsInCart.map((item) => `
+          <article class="summary-item" data-cart-item="${item.id}">
+            <div class="sample-product-icon" aria-hidden="true">B</div>
+            <div class="summary-item-info">
+              <span class="summary-item-brand">${item.brand}</span>
+              <h3>${item.name}</h3>
+              <strong>${money(item.price * item.quantity)}</strong>
+              <div class="quantity-controls" aria-label="Cantidad de ${item.name}">
+                <button type="button" data-quantity-change="-1" data-product-id="${item.id}" aria-label="Quitar una unidad de ${item.name}">−</button>
+                <span>${item.quantity}</span>
+                <button type="button" data-quantity-change="1" data-product-id="${item.id}" aria-label="Agregar una unidad de ${item.name}">+</button>
+                <button class="remove-item" type="button" data-remove-product="${item.id}">Quitar</button>
+              </div>
+            </div>
+          </article>
+        `).join("");
+
+        document.querySelector("#emptyOrderNote").hidden = productsInCart.length > 0;
+        const subtotal = productsInCart.reduce((total, item) => total + item.price * item.quantity, 0);
+        const shipping = getShippingQuote();
+
+        document.querySelector("#subtotalAmount").textContent = money(subtotal);
+        document.querySelector("#shippingPrice").textContent = shipping ? money(shipping.amount) : "—";
+        document.querySelector("#shippingAmount").textContent = shipping ? money(shipping.amount) : "Por calcular";
+        document.querySelector("#totalAmount").textContent = money(subtotal + (shipping ? shipping.amount : 0));
+
+        if (shipping) {
+          shippingQuote.classList.add("is-calculated");
+          document.querySelector("#shippingZone").textContent = shipping.zone;
+          document.querySelector("#shippingDescription").textContent = `${shipping.description} ${shipping.eta}.`;
+        } else {
+          shippingQuote.classList.remove("is-calculated");
+          document.querySelector("#shippingZone").textContent = "Calcula tu envío";
+          document.querySelector("#shippingDescription").textContent = "Selecciona departamento y ciudad o municipio.";
+        }
+      }
+
+      function showError(message) {
+        checkoutError.textContent = message;
+        checkoutError.hidden = false;
+      }
+
+      function clearError() {
+        checkoutError.textContent = "";
+        checkoutError.hidden = true;
+      }
+
+      function createReceipt(items, shipping, formData) {
+        const orderNumber = `BT-${Date.now().toString().slice(-8)}`;
+        const subtotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
+        const total = subtotal + shipping.amount;
+        const department = formData.get("department") === "other"
+          ? "Otro departamento de Colombia"
+          : formData.get("department");
+        const addressParts = [
+          formData.get("streetAddress"),
+          formData.get("city"),
+          department,
+          "Colombia"
+        ].map(escapeHtml);
+
+        document.querySelector("#receiptDetails").innerHTML = `
+          <div><dt>Número de pedido</dt><dd>${orderNumber}</dd></div>
+          <div><dt>Fecha</dt><dd>${new Intl.DateTimeFormat("es-CO", { dateStyle: "long", timeStyle: "short" }).format(new Date())}</dd></div>
+          <div><dt>Recibe</dt><dd>${escapeHtml(formData.get("recipientName"))} · ${escapeHtml(formData.get("recipientEmail"))}</dd></div>
+          <div><dt>Dirección</dt><dd>${addressParts.join(", ")}</dd></div>
+          <div><dt>Envío estimado</dt><dd>${shipping.zone} · ${money(shipping.amount)}</dd></div>
+          <div><dt>Método elegido</dt><dd>${escapeHtml(formData.get("paymentMethod"))}</dd></div>
+          <div><dt>Estado</dt><dd>Simulación; no se procesó ningún pago</dd></div>
+        `;
+        document.querySelector("#receiptItems").innerHTML = `
+          <h3>Ítems del pedido</h3>
+          ${items.map((item) => `<p><span>${item.quantity} × ${escapeHtml(item.name)}</span><strong>${money(item.price * item.quantity)}</strong></p>`).join("")}
+          <p><span>Subtotal</span><strong>${money(subtotal)}</strong></p>
+        `;
+        document.querySelector("#receiptTotal").textContent = money(total);
+        form.hidden = true;
+        document.querySelector("#receiptCard").hidden = false;
+        document.querySelector("#receiptCard").focus();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      sampleProducts.forEach((product) => {
+        const option = document.createElement("option");
+        option.value = product.id;
+        option.textContent = `${product.name} · ${money(product.price)}`;
+        document.querySelector("#sampleProduct").append(option);
+      });
+
+      document.querySelector("#addSampleItem").addEventListener("click", () => {
+        const productId = document.querySelector("#sampleProduct").value;
+        if (!productId) {
+          showError("Selecciona un ítem de muestra antes de agregarlo.");
+          return;
+        }
+
+        const existingItem = cart.find((item) => item.id === productId);
+        if (existingItem) {
+          existingItem.quantity = Math.min(existingItem.quantity + 1, 99);
+        } else {
+          cart.push({ id: productId, quantity: 1 });
+        }
+        clearError();
+        renderCart();
+      });
+
+      document.querySelector("#summaryItems").addEventListener("click", (event) => {
+        const removeButton = event.target.closest("[data-remove-product]");
+        const quantityButton = event.target.closest("[data-quantity-change]");
+        if (removeButton) {
+          const index = cart.findIndex((item) => item.id === removeButton.dataset.removeProduct);
+          if (index !== -1) cart.splice(index, 1);
+          renderCart();
+          return;
+        }
+
+        if (quantityButton) {
+          const item = cart.find((entry) => entry.id === quantityButton.dataset.productId);
+          if (!item) return;
+          item.quantity = Math.min(99, item.quantity + Number(quantityButton.dataset.quantityChange));
+          if (item.quantity <= 0) cart.splice(cart.indexOf(item), 1);
+          renderCart();
+        }
+      });
+
+      cityInput.addEventListener("input", renderCart);
+      departmentSelect.addEventListener("change", renderCart);
+      form.addEventListener("input", clearError);
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        clearError();
+
+        if (cart.length === 0) {
+          showError("Agrega al menos un ítem de muestra antes de confirmar.");
+          return;
+        }
+        if (!getShippingQuote()) {
+          showError("Completa el departamento y la ciudad para calcular el envío antes de confirmar.");
+          cityInput.focus();
+          return;
+        }
+        if (!form.reportValidity()) return;
+
+        const items = cart.map((item) => ({
+          ...sampleProducts.find((product) => product.id === item.id),
+          quantity: item.quantity
+        }));
+        const shipping = getShippingQuote();
+        const formData = new FormData(form);
+        const submitButton = document.querySelector("#placeOrder");
+        submitButton.disabled = true;
+        submitButton.textContent = "Procesando simulación…";
+
+        window.setTimeout(() => createReceipt(items, shipping, formData), 500);
+      });
+
+      document.querySelector("#printReceipt").addEventListener("click", () => window.print());
+
+      renderCart();
+    </script>
+  </body>
+</html>
