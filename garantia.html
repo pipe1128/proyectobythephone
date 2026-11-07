@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Radica una solicitud de servicio técnico o garantía y agenda la recogida de tu equipo con Bythephone."
+    />
+    <meta name="theme-color" content="#f5f6f8" />
+    <title>Servicio técnico y garantías | Bythephone</title>
+    <link rel="stylesheet" href="garantia.css" />
+    <link rel="stylesheet" href="atencion.css" />
+    <script src="atencion.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="inicio.html#inicio" aria-label="Bythephone, ir al inicio">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span>Bythe<span class="brand-light">phone</span></span>
+        </a>
+        <nav class="main-nav" aria-label="Navegación principal">
+          <a href="sesion.html">Iniciar sesión</a>
+          <a href="inicio.html#inicio">Inicio</a>
+          <a href="catalogo.html">Catálogo</a>
+          <a href="cotizaciones.html">Cotizaciones</a>
+          <a href="credito.html">Crédito</a>
+          <a href="garantia.html" aria-current="page">Garantía</a>
+          <a href="seguimiento.html">Seguimiento</a>
+          <a href="preguntas.html">Preguntas</a>
+          <a href="envio.html">Envío</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="service-hero">
+        <div class="service-hero-inner">
+          <a class="back-link" href="inicio.html#inicio">← Volver al inicio</a>
+          <span class="eyebrow">ESTAMOS PARA AYUDARTE</span>
+          <h1>Tu equipo en buenas manos.</h1>
+          <p>Cuéntanos qué ocurrió. Radica tu solicitud y elige cuándo podemos recoger el equipo en tu domicilio.</p>
+        </div>
+      </section>
+
+      <section class="service-section" aria-label="Radicación de servicio técnico y garantías">
+        <div class="demo-notice" role="note">
+          <span class="notice-icon" aria-hidden="true">i</span>
+          <p>
+            Completa la radicación con los detalles del equipo y la recogida. Esta experiencia registra la solicitud
+            en este navegador para demostración; la recogida no se envía a una transportadora ni queda confirmada en un sistema operativo.
+          </p>
+        </div>
+
+        <form class="service-layout" id="serviceForm" novalidate>
+          <div class="form-column">
+            <section class="form-card" aria-labelledby="requestTitle">
+              <div class="card-heading">
+                <span class="step-number">01</span>
+                <div>
+                  <span class="eyebrow">CUÉNTANOS SOBRE TU EQUIPO</span>
+                  <h2 id="requestTitle">Datos de la solicitud</h2>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <label class="field field-wide" for="customerName">
+                  Nombre completo
+                  <input id="customerName" name="customerName" autocomplete="name" maxlength="100" required />
+                </label>
+                <label class="field" for="customerEmail">
+                  Correo electrónico
+                  <input id="customerEmail" name="customerEmail" type="email" autocomplete="email" maxlength="150" required />
+                </label>
+                <label class="field" for="customerPhone">
+                  Teléfono
+                  <input
+                    id="customerPhone"
+                    name="customerPhone"
+                    type="tel"
+                    autocomplete="tel"
+                    inputmode="tel"
+                    pattern="[0-9]{7,15}"
+                    title="Ingresa un número de teléfono válido."
+                    maxlength="20"
+                    required
+                  />
+                </label>
+                <label class="field" for="equipment">
+                  Equipo
+                  <input id="equipment" name="equipment" placeholder="Ej. Samsung Galaxy A55 5G" maxlength="100" required />
+                </label>
+                <label class="field" for="serialNumber">
+                  IMEI o número de serie <span class="optional">(opcional)</span>
+                  <input id="serialNumber" name="serialNumber" maxlength="40" />
+                </label>
+                <label class="field" for="purchaseDate">
+                  Fecha de compra <span class="optional">(si la conoces)</span>
+                  <input id="purchaseDate" name="purchaseDate" type="date" />
+                </label>
+                <label class="field field-wide" for="requestType">
+                  Tipo de solicitud
+                  <select id="requestType" name="requestType" required>
+                    <option value="">Selecciona el tipo de atención</option>
+                    <option value="Garantía">Revisión por garantía</option>
+                    <option value="Servicio técnico">Servicio técnico</option>
+                    <option value="Diagnóstico">Diagnóstico del equipo</option>
+                  </select>
+                </label>
+                <label class="field field-wide" for="failureDescription">
+                  Describe la falla
+                  <textarea
+                    id="failureDescription"
+                    name="failureDescription"
+                    rows="5"
+                    minlength="10"
+                    maxlength="1200"
+                    placeholder="¿Qué sucede con el equipo? ¿Desde cuándo presenta la falla?"
+                    required
+                  ></textarea>
+                  <span class="field-hint">Incluye los detalles que ayuden a nuestro equipo técnico a entender el problema (mínimo 10 caracteres).</span>
+                </label>
+              </div>
+            </section>
+
+            <section class="form-card" aria-labelledby="pickupTitle">
+              <div class="card-heading">
+                <span class="step-number">02</span>
+                <div>
+                  <span class="eyebrow">COORDINA LA RECOGIDA</span>
+                  <h2 id="pickupTitle">Recogida a domicilio</h2>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <label class="field" for="department">
+                  Departamento
+                  <select id="department" name="department" autocomplete="address-level1" required>
+                    <option value="">Selecciona un departamento</option>
+                    <option>Antioquia</option>
+                    <option>Atlántico</option>
+                    <option>Bogotá D. C.</option>
+                    <option>Bolívar</option>
+                    <option>Boyacá</option>
+                    <option>Caldas</option>
+                    <option>Cundinamarca</option>
+                    <option>Magdalena</option>
+                    <option>Nariño</option>
+                    <option>Norte de Santander</option>
+                    <option>Quindío</option>
+                    <option>Risaralda</option>
+                    <option>Santander</option>
+                    <option>Tolima</option>
+                    <option>Valle del Cauca</option>
+                    <option value="other">Otro departamento de Colombia</option>
+                  </select>
+                </label>
+                <label class="field" for="city">
+                  Ciudad o municipio
+                  <input id="city" name="city" autocomplete="address-level2" maxlength="80" required />
+                </label>
+                <label class="field field-wide" for="streetAddress">
+                  Dirección de recogida
+                  <input
+                    id="streetAddress"
+                    name="streetAddress"
+                    autocomplete="street-address"
+                    placeholder="Calle, carrera, número y barrio"
+                    maxlength="180"
+                    required
+                  />
+                </label>
+                <label class="field" for="pickupDate">
+                  Fecha preferida
+                  <input id="pickupDate" name="pickupDate" type="date" required />
+                </label>
+                <label class="field" for="pickupTime">
+                  Franja horaria preferida
+                  <select id="pickupTime" name="pickupTime" required>
+                    <option value="">Selecciona una franja</option>
+                    <option value="9:00 a. m. – 12:00 p. m.">9:00 a. m. – 12:00 p. m.</option>
+                    <option value="12:00 p. m. – 3:00 p. m.">12:00 p. m. – 3:00 p. m.</option>
+                    <option value="3:00 p. m. – 6:00 p. m.">3:00 p. m. – 6:00 p. m.</option>
+                  </select>
+                </label>
+                <label class="field field-wide" for="pickupNotes">
+                  Indicaciones adicionales <span class="optional">(opcional)</span>
+                  <textarea id="pickupNotes" name="pickupNotes" rows="2" maxlength="300" placeholder="Apartamento, torre, barrio o referencia para encontrar el domicilio"></textarea>
+                </label>
+              </div>
+            </section>
+          </div>
+
+          <aside class="summary-card" aria-labelledby="summaryTitle">
+            <div class="card-heading">
+              <span class="step-number">03</span>
+              <div>
+                <span class="eyebrow">ANTES DE ENVIAR</span>
+                <h2 id="summaryTitle">Revisa tu radicación</h2>
+              </div>
+            </div>
+            <div class="summary-icon" aria-hidden="true">⌖</div>
+            <p class="summary-title">Recogida a domicilio</p>
+            <p class="summary-copy">La fecha y franja horaria se registran como preferencia para la recogida del equipo.</p>
+            <div class="summary-details">
+              <div><span>Tipo de solicitud</span><strong id="summaryType">Por seleccionar</strong></div>
+              <div><span>Fecha preferida</span><strong id="summaryDate">Por seleccionar</strong></div>
+              <div><span>Horario</span><strong id="summaryTime">Por seleccionar</strong></div>
+            </div>
+            <p class="form-error" id="formError" role="alert" hidden></p>
+            <button class="button button-primary submit-button" id="submitRequest" type="submit">
+              Radicar solicitud <span aria-hidden="true">→</span>
+            </button>
+            <p class="secure-note">Al radicar, recibirás un código único para consultar los detalles de tu ticket en esta confirmación.</p>
+          </aside>
+        </form>
+
+        <section class="confirmation-card" id="confirmationCard" aria-labelledby="confirmationTitle" tabindex="-1" hidden>
+          <div class="confirmation-topline">
+            <span class="confirmation-status"><span aria-hidden="true">✓</span> Solicitud radicada con éxito</span>
+            <span class="confirmation-mark" aria-hidden="true">B</span>
+          </div>
+          <span class="eyebrow">TICKET DE SERVICIO TÉCNICO</span>
+          <h2 id="confirmationTitle">Tu equipo ya tiene seguimiento.</h2>
+          <p class="confirmation-intro">La solicitud y los detalles de la recogida quedaron registrados en esta demostración.</p>
+          <div class="ticket-code">
+            <span>CÓDIGO ÚNICO DE TICKET</span>
+            <strong id="ticketCode"></strong>
+            <small>Guarda este código para identificar tu solicitud.</small>
+          </div>
+          <dl class="confirmation-details" id="confirmationDetails"></dl>
+          <p class="confirmation-note">
+            La fecha y franja elegidas son una preferencia de recogida. Esta página guarda la solicitud localmente,
+            pero no notifica a un técnico o transportadora.
+          </p>
+          <div class="confirmation-actions">
+            <a class="button button-primary" id="trackRequestLink" href="seguimiento.html">Consultar seguimiento <span aria-hidden="true">→</span></a>
+            <a class="button button-outline" href="inicio.html#inicio">Volver al inicio</a>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a class="brand footer-brand" href="inicio.html#inicio">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span>Bythe<span class="brand-light">phone</span></span>
+        </a>
+        <p>Tecnología que te conecta.</p>
+        <a class="social-link" href="https://wa.me/573015379982" target="_blank" rel="noopener noreferrer">
+          Escríbenos por WhatsApp <span aria-hidden="true">↗</span>
+        </a>
+        <span>© Bythephone. Hecho para estar conectados.</span>
+      </div>
+    </footer>
+
+    <script>
+      const storageKey = "bythephone-service-requests";
+      const form = document.querySelector("#serviceForm");
+      const pickupDateInput = document.querySelector("#pickupDate");
+      const dateFormatter = new Intl.DateTimeFormat("es-CO", { dateStyle: "long", timeZone: "UTC" });
+      const timeFormatter = new Intl.DateTimeFormat("es-CO", { dateStyle: "long" });
+      const formError = document.querySelector("#formError");
+
+      function localDateValue(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, "0");
+        const day = String(date.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+      }
+
+      function formatDate(value) {
+        const [year, month, day] = value.split("-").map(Number);
+        return dateFormatter.format(new Date(Date.UTC(year, month - 1, day)));
+      }
+
+      function escapeHtml(value) {
+        return String(value).replace(/[&<>"']/g, (character) => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        })[character]);
+      }
+
+      function setError(message) {
+        formError.textContent = message;
+        formError.hidden = false;
+      }
+
+      function clearError() {
+        formError.textContent = "";
+        formError.hidden = true;
+      }
+
+      function updatePickupSummary() {
+        const requestType = document.querySelector("#requestType").value;
+        const pickupDate = pickupDateInput.value;
+        const pickupTime = document.querySelector("#pickupTime").value;
+        document.querySelector("#summaryType").textContent = requestType || "Por seleccionar";
+        document.querySelector("#summaryDate").textContent = pickupDate ? formatDate(pickupDate) : "Por seleccionar";
+        document.querySelector("#summaryTime").textContent = pickupTime || "Por seleccionar";
+      }
+
+      function createTicketCode() {
+        if (window.crypto && typeof window.crypto.randomUUID === "function") {
+          return `BT-ST-${window.crypto.randomUUID().replace(/-/g, "").slice(0, 10).toUpperCase()}`;
+        }
+        if (window.crypto && typeof window.crypto.getRandomValues === "function") {
+          const bytes = new Uint8Array(8);
+          window.crypto.getRandomValues(bytes);
+          return `BT-ST-${Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("").toUpperCase()}`;
+        }
+        throw new Error("Este navegador no permite generar un código de ticket único de forma segura.");
+      }
+
+      function renderConfirmation(request) {
+        const department = request.department === "other"
+          ? "Otro departamento de Colombia"
+          : request.department;
+        document.querySelector("#ticketCode").textContent = request.ticket;
+        document.querySelector("#trackRequestLink").href = `seguimiento.html?ticket=${encodeURIComponent(request.ticket)}`;
+        document.querySelector("#confirmationDetails").innerHTML = `
+          <div><dt>Fecha de radicación</dt><dd>${escapeHtml(timeFormatter.format(new Date(request.createdAt)))}</dd></div>
+          <div><dt>Tipo de solicitud</dt><dd>${escapeHtml(request.requestType)}</dd></div>
+          <div><dt>Equipo</dt><dd>${escapeHtml(request.equipment)}</dd></div>
+          <div><dt>IMEI o número de serie</dt><dd>${escapeHtml(request.serialNumber || "No informado")}</dd></div>
+          <div><dt>Cliente</dt><dd>${escapeHtml(request.customerName)} · ${escapeHtml(request.customerPhone)}</dd></div>
+          <div><dt>Correo</dt><dd>${escapeHtml(request.customerEmail)}</dd></div>
+          <div><dt>Falla reportada</dt><dd>${escapeHtml(request.failureDescription)}</dd></div>
+          <div><dt>Recogida solicitada</dt><dd>${escapeHtml(formatDate(request.pickupDate))} · ${escapeHtml(request.pickupTime)}</dd></div>
+          <div><dt>Dirección</dt><dd>${escapeHtml(request.streetAddress)}, ${escapeHtml(request.city)}, ${escapeHtml(department)}</dd></div>
+          <div><dt>Indicaciones</dt><dd>${escapeHtml(request.pickupNotes || "Sin indicaciones adicionales")}</dd></div>
+        `;
+        form.hidden = true;
+        document.querySelector("#confirmationCard").hidden = false;
+        document.querySelector("#confirmationCard").focus();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      const today = localDateValue(new Date());
+      pickupDateInput.min = today;
+      document.querySelector("#purchaseDate").max = today;
+      form.addEventListener("input", () => {
+        clearError();
+        updatePickupSummary();
+      });
+      form.addEventListener("change", () => {
+        clearError();
+        updatePickupSummary();
+      });
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        clearError();
+
+        if (!form.reportValidity()) return;
+        if (pickupDateInput.value < today) {
+          setError("Selecciona una fecha de recogida igual o posterior a hoy.");
+          pickupDateInput.focus();
+          return;
+        }
+
+        let ticket;
+        try {
+          ticket = createTicketCode();
+        } catch (error) {
+          setError(error.message);
+          return;
+        }
+
+        const formData = new FormData(form);
+        const createdAt = new Date().toISOString();
+        const request = {
+          ticket,
+          createdAt,
+          status: "Recibido",
+          statusHistory: [{ status: "Recibido", updatedAt: createdAt }],
+          customerName: formData.get("customerName").trim(),
+          customerEmail: formData.get("customerEmail").trim(),
+          customerPhone: formData.get("customerPhone").trim(),
+          equipment: formData.get("equipment").trim(),
+          serialNumber: formData.get("serialNumber").trim(),
+          purchaseDate: formData.get("purchaseDate"),
+          requestType: formData.get("requestType"),
+          failureDescription: formData.get("failureDescription").trim(),
+          department: formData.get("department"),
+          city: formData.get("city").trim(),
+          streetAddress: formData.get("streetAddress").trim(),
+          pickupDate: formData.get("pickupDate"),
+          pickupTime: formData.get("pickupTime"),
+          pickupNotes: formData.get("pickupNotes").trim()
+        };
+
+        try {
+          const storedRequests = JSON.parse(localStorage.getItem(storageKey) || "[]");
+          if (!Array.isArray(storedRequests)) throw new Error("El registro guardado no tiene un formato válido.");
+          if (storedRequests.some((entry) => entry.ticket === ticket)) {
+            throw new Error("No fue posible asignar un ticket único. Intenta radicar de nuevo.");
+          }
+          localStorage.setItem(storageKey, JSON.stringify([...storedRequests, request]));
+          renderConfirmation(request);
+        } catch (error) {
+          setError(`No fue posible guardar la radicación: ${error.message}`);
+        }
+      });
+
+      updatePickupSummary();
+    </script>
+  </body>
+</html>

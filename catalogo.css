@@ -356,6 +356,8 @@ select:focus-visible {
 }
 
 .product-card {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
   overflow: hidden;
   border: 1px solid #ebedf1;
@@ -373,7 +375,7 @@ select:focus-visible {
 .product-card-open {
   display: block;
   width: 100%;
-  height: 100%;
+  flex: 1;
   padding: 0;
   border: 0;
   background: white;
@@ -483,6 +485,41 @@ select:focus-visible {
   color: var(--blue);
   font-size: 11px;
   font-weight: 700;
+}
+
+.interest-toggle {
+  min-height: 38px;
+  margin: 0 12px 12px;
+  border: 1px solid #dfe4f2;
+  border-radius: 7px;
+  background: #f7f8fc;
+  color: var(--blue);
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.interest-toggle:hover {
+  border-color: #bfcaf6;
+  background: #edf1ff;
+}
+
+.interest-toggle.is-added {
+  border-color: #d7eadf;
+  background: #f0f8f3;
+  color: #26734a;
+}
+
+.interest-status {
+  min-height: 18px;
+  margin: 12px 0;
+  color: #667187;
+  font-size: 11px;
+}
+
+.interest-status.is-error {
+  color: #a63232;
 }
 
 .empty-state {

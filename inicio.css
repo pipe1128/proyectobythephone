@@ -210,10 +210,6 @@ p {
   margin-inline: auto;
 }
 
-.hero-link:hover {
-  color: var(--blue);
-}
-
 .nav-cart {
   display: inline-flex;
   align-items: center;
@@ -278,8 +274,7 @@ p {
 }
 
 .hero-copy > p,
-.section-heading p,
-.store-copy > p {
+.section-heading p {
   max-width: 420px;
   margin-bottom: 0;
   color: var(--muted);
@@ -292,17 +287,6 @@ p {
   align-items: center;
   gap: 24px;
   margin-top: 30px;
-}
-
-.hero-link {
-  color: #4e5765;
-  font-size: 12px;
-  font-weight: 700;
-  transition: color 160ms ease;
-}
-
-.hero-link span {
-  margin-left: 4px;
 }
 
 .hero-note {
@@ -433,8 +417,7 @@ p {
   margin-bottom: 28px;
 }
 
-.section-heading h2,
-.store-copy h2 {
+.section-heading h2 {
   margin: 12px 0 8px;
   font-family: var(--font-heading);
   font-size: clamp(27px, 3vw, 37px);
@@ -641,91 +624,6 @@ p {
   background: #f5f5f6;
   color: #9da2ac;
   cursor: not-allowed;
-}
-
-.store-section {
-  padding-block: 68px;
-  background: #171e2b;
-  color: white;
-}
-
-.store-layout {
-  display: grid;
-  grid-template-columns: 1fr 0.84fr;
-  align-items: center;
-  gap: 80px;
-}
-
-.store-copy .eyebrow {
-  color: #a7b2c5;
-}
-
-.store-copy h2 {
-  margin-top: 16px;
-  font-size: clamp(30px, 3vw, 40px);
-  letter-spacing: -1.8px;
-}
-
-.store-copy > p {
-  max-width: 430px;
-  color: #b3bdcc;
-  font-size: 13px;
-}
-
-.button-light {
-  margin-top: 24px;
-  background: white;
-  color: #182133;
-}
-
-.button-light:hover {
-  background: #e9edfa;
-}
-
-.store-details {
-  display: grid;
-  gap: 12px;
-}
-
-.detail-card {
-  display: flex;
-  gap: 15px;
-  padding: 19px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.045);
-}
-
-.detail-icon {
-  display: grid;
-  width: 38px;
-  height: 38px;
-  flex: 0 0 38px;
-  place-items: center;
-  border-radius: 9px;
-  background: rgba(118, 145, 255, 0.16);
-  color: #9cacff;
-  font-size: 19px;
-}
-
-.detail-label {
-  color: #a5b0c2;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.detail-card h3 {
-  margin: 7px 0 6px;
-  font-family: var(--font-heading);
-  font-size: 14px;
-}
-
-.detail-card p {
-  margin-bottom: 4px;
-  color: #b4bdca;
-  font-size: 11px;
-  line-height: 1.6;
 }
 
 .site-footer {
@@ -1126,9 +1024,6 @@ p {
     height: 220px;
   }
 
-  .store-layout {
-    gap: 42px;
-  }
 }
 
 @media (max-width: 700px) {
@@ -1212,15 +1107,6 @@ p {
 
   .product-price {
     font-size: 15px;
-  }
-
-  .store-section {
-    padding-block: 53px;
-  }
-
-  .store-layout {
-    grid-template-columns: 1fr;
-    gap: 34px;
   }
 
   .footer-inner {

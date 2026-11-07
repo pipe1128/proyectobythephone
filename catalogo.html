@@ -10,6 +10,8 @@
     <meta name="theme-color" content="#f5f6f8" />
     <title>Catálogo de celulares | Bythephone</title>
     <link rel="stylesheet" href="catalogo.css" />
+    <link rel="stylesheet" href="atencion.css" />
+    <script src="atencion.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -28,8 +30,12 @@
           <a href="sesion.html">Iniciar sesión</a>
           <a href="inicio.html#inicio">Inicio</a>
           <a href="#catalogo" aria-current="page">Catálogo</a>
+          <a href="cotizaciones.html">Cotizaciones</a>
+          <a href="credito.html">Crédito</a>
+          <a href="garantia.html">Garantía</a>
+          <a href="seguimiento.html">Seguimiento</a>
+          <a href="preguntas.html">Preguntas</a>
           <a href="envio.html">Envío</a>
-          <a href="inicio.html#ubicacion">Tienda</a>
         </nav>
       </div>
     </header>
@@ -108,7 +114,7 @@
               </label>
             </form>
 
-            <p class="filter-note">Los precios y la disponibilidad se confirman directamente con la tienda.</p>
+            <p class="filter-note">Los precios y la disponibilidad se confirman directamente con nuestro equipo.</p>
           </aside>
 
           <div class="catalog-results">
@@ -130,6 +136,9 @@
                 </label>
               </div>
             </div>
+            <p class="interest-status" id="interestStatus" role="status" aria-live="polite">
+              Agrega equipos a tu lista de interés para preparar una cotización.
+            </p>
 
             <div class="product-grid" id="productGrid" aria-live="polite"></div>
             <div class="empty-state" id="emptyState" hidden>
@@ -140,7 +149,7 @@
             </div>
 
             <p class="catalog-disclaimer">
-              Referencias y precios de muestra para explorar el catálogo. Confirma el precio final, color y existencias con nuestro equipo.
+              Referencias y precios de muestra para explorar el catálogo. Confirma el precio final, color y existencias con nuestro equipo. Puedes agregar equipos a tu lista de interés para generar una cotización.
             </p>
           </div>
         </div>
@@ -335,6 +344,8 @@
         }
       ];
 
+      const interestStorageKey = "bythephone-interest-list";
+      const interestStatus = document.querySelector("#interestStatus");
       const productGrid = document.querySelector("#productGrid");
       const filters = document.querySelector("#catalogFilters");
       const resultsCount = document.querySelector("#resultsCount");
@@ -347,6 +358,43 @@
         currency: "COP",
         maximumFractionDigits: 0
       });
+      let interestItems = readInterestItems();
+
+      function readInterestItems() {
+        try {
+          const storedItems = JSON.parse(localStorage.getItem(interestStorageKey) || "[]");
+          if (!Array.isArray(storedItems)) throw new Error("La lista guardada no tiene un formato válido.");
+          return storedItems
+            .map((item) => typeof item === "string" ? { id: item, quantity: 1 } : item)
+            .filter((item) =>
+              item &&
+              typeof item.id === "string" &&
+              Number.isInteger(item.quantity) &&
+              item.quantity >= 1 &&
+              item.quantity <= 99
+            );
+        } catch (error) {
+          interestStatus.textContent = "No fue posible leer tu lista de interés. Revisa la configuración de almacenamiento del navegador.";
+          interestStatus.classList.add("is-error");
+          return [];
+        }
+      }
+
+      function saveInterestItems(nextItems) {
+        try {
+          localStorage.setItem(interestStorageKey, JSON.stringify(nextItems));
+          interestItems = nextItems;
+          interestStatus.textContent = interestItems.length
+            ? `${interestItems.length} ${interestItems.length === 1 ? "equipo agregado" : "equipos agregados"} a tu lista de interés.`
+            : "Tu lista de interés está vacía. Agrega equipos para preparar una cotización.";
+          interestStatus.classList.remove("is-error");
+          return true;
+        } catch (error) {
+          interestStatus.textContent = "No fue posible guardar tu lista de interés. Revisa la configuración de almacenamiento del navegador.";
+          interestStatus.classList.add("is-error");
+          return false;
+        }
+      }
 
       function formatPrice(price) {
         return copFormatter.format(price);
@@ -380,7 +428,9 @@
             return products.indexOf(a) - products.indexOf(b);
           });
 
-        productGrid.innerHTML = matchingProducts.map((product) => `
+        productGrid.innerHTML = matchingProducts.map((product) => {
+          const isInterested = interestItems.some((item) => item.id === product.id);
+          return `
           <article class="product-card">
             <button
               class="product-card-open"
@@ -401,8 +451,15 @@
                 <span class="product-link">Ver ficha técnica <span aria-hidden="true">↗</span></span>
               </span>
             </button>
+            <button
+              class="interest-toggle${isInterested ? " is-added" : ""}"
+              type="button"
+              data-interest-toggle="${product.id}"
+              aria-pressed="${isInterested}"
+            >${isInterested ? "Agregado a interés ✓" : "Agregar a lista de interés +"}</button>
           </article>
-        `).join("");
+        `;
+        }).join("");
 
         const countLabel = matchingProducts.length === 1 ? "equipo" : "equipos";
         resultsCount.textContent = `${matchingProducts.length} ${countLabel}`;
@@ -446,7 +503,7 @@
             <span class="product-brand">${product.brand}</span>
             <h2 id="dialogTitle">${product.name}</h2>
             <p class="detail-price">${formatPrice(product.price)}</p>
-            <p class="availability"><span aria-hidden="true">●</span> Disponibilidad por confirmar en tienda</p>
+            <p class="availability"><span aria-hidden="true">●</span> Disponibilidad por confirmar</p>
             <p class="detail-description">${product.description}</p>
             <div class="detail-tabs" role="tablist" aria-label="Información del equipo">
               <button
@@ -508,6 +565,22 @@
       });
 
       productGrid.addEventListener("click", (event) => {
+        const interestButton = event.target.closest("[data-interest-toggle]");
+        if (interestButton) {
+          const product = products.find((item) => item.id === interestButton.dataset.interestToggle);
+          if (!product) return;
+
+          const existingIndex = interestItems.findIndex((item) => item.id === product.id);
+          const nextItems = [...interestItems];
+          if (existingIndex === -1) {
+            nextItems.push({ id: product.id, quantity: 1 });
+          } else {
+            nextItems.splice(existingIndex, 1);
+          }
+          if (saveInterestItems(nextItems)) renderProducts();
+          return;
+        }
+
         const openButton = event.target.closest("[data-open-product]");
         if (!openButton) return;
 

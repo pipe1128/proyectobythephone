@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Simula cuotas de financiación para tu próximo celular con las opciones de crédito Bythephone."
+    />
+    <meta name="theme-color" content="#f5f6f8" />
+    <title>Simulador de crédito | Bythephone</title>
+    <link rel="stylesheet" href="credito.css" />
+    <link rel="stylesheet" href="atencion.css" />
+    <script src="atencion.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="inicio.html#inicio" aria-label="Bythephone, ir al inicio">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span>Bythe<span class="brand-light">phone</span></span>
+        </a>
+        <nav class="main-nav" aria-label="Navegación principal">
+          <a href="sesion.html">Iniciar sesión</a>
+          <a href="inicio.html#inicio">Inicio</a>
+          <a href="catalogo.html">Catálogo</a>
+          <a href="cotizaciones.html">Cotizaciones</a>
+          <a href="credito.html" aria-current="page">Crédito</a>
+          <a href="garantia.html">Garantía</a>
+          <a href="seguimiento.html">Seguimiento</a>
+          <a href="preguntas.html">Preguntas</a>
+          <a href="envio.html">Envío</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="credit-hero">
+        <div class="credit-hero-inner">
+          <a class="back-link" href="catalogo.html">← Volver al catálogo</a>
+          <span class="eyebrow">FINANCIA A TU MANERA</span>
+          <h1>Tu próximo equipo,<br /><span>a tu ritmo.</span></h1>
+          <p>Simula el monto, el plazo y la cuota inicial. Compara opciones y conoce el valor estimado de tus cuotas.</p>
+        </div>
+      </section>
+
+      <section class="credit-section" aria-label="Simulador de crédito">
+        <div class="demo-notice" role="note">
+          <span class="notice-icon" aria-hidden="true">i</span>
+          <p>
+            Simulación informativa, no es una oferta ni una aprobación de crédito. Las tasas indicadas se aplican
+            una sola vez sobre el monto financiado y se reparten entre las cuotas; no son tasas periódicas ni una
+            representación del cálculo real de las entidades.
+          </p>
+        </div>
+
+        <form class="simulator-layout" id="creditForm" novalidate>
+          <section class="simulator-card" aria-labelledby="simulatorTitle">
+            <div class="card-heading">
+              <span class="step-number">01</span>
+              <div>
+                <span class="eyebrow">PERSONALIZA TU PLAN</span>
+                <h2 id="simulatorTitle">Configura tu simulación</h2>
+              </div>
+            </div>
+
+            <fieldset class="purchase-type">
+              <legend>¿Qué deseas financiar?</legend>
+              <label class="type-option">
+                <input type="radio" name="purchaseType" value="product" checked />
+                <span>Un equipo</span>
+              </label>
+              <label class="type-option">
+                <input type="radio" name="purchaseType" value="amount" />
+                <span>Un monto</span>
+              </label>
+            </fieldset>
+
+            <div class="field-group" id="productField">
+              <label for="equipmentSelect">Selecciona un equipo</label>
+              <select id="equipmentSelect" name="equipment">
+                <option value="samsung-a55">Samsung Galaxy A55 5G · $ 1.899.900</option>
+                <option value="iphone-13">Apple iPhone 13 · $ 2.399.900</option>
+                <option value="xiaomi-redmi-note-13">Xiaomi Redmi Note 13 Pro 5G · $ 1.499.900</option>
+                <option value="motorola-edge-50">Motorola Edge 50 Fusion · $ 1.399.900</option>
+                <option value="samsung-a35">Samsung Galaxy A35 5G · $ 1.199.900</option>
+                <option value="xiaomi-redmi-13">Xiaomi Redmi Note 13 · $ 799.900</option>
+                <option value="motorola-g84">Motorola Moto G84 5G · $ 899.900</option>
+                <option value="iphone-15">Apple iPhone 15 · $ 3.599.900</option>
+              </select>
+              <span class="field-hint">Precios de referencia del catálogo; confirma el valor final con nuestro equipo.</span>
+            </div>
+
+            <div class="field-group" id="amountField" hidden>
+              <label for="purchaseAmount">Monto de la compra <span>(COP)</span></label>
+              <div class="input-with-prefix">
+                <span aria-hidden="true">$</span>
+                <input id="purchaseAmount" name="purchaseAmount" type="number" min="1" max="100000000" step="1000" value="2500000" inputmode="numeric" />
+              </div>
+              <span class="field-hint">Ingresa un monto entre $ 1 y $ 100.000.000 COP.</span>
+            </div>
+
+            <div class="field-group">
+              <label for="downPayment">Cuota inicial <span>(COP)</span></label>
+              <div class="input-with-prefix">
+                <span aria-hidden="true">$</span>
+                <input id="downPayment" name="downPayment" type="number" min="0" step="1000" value="0" inputmode="numeric" />
+              </div>
+              <span class="field-hint" id="downPaymentHint">Ingresa el valor que pagarías al inicio, si aplica.</span>
+            </div>
+
+            <div class="field-group installment-field">
+              <div class="field-label-row">
+                <label for="installments">Número de cuotas</label>
+                <output id="installmentOutput" for="installments">12 cuotas</output>
+              </div>
+              <input id="installments" name="installments" type="range" min="3" max="36" step="1" value="12" />
+              <div class="range-labels"><span>3 cuotas</span><span>36 cuotas</span></div>
+            </div>
+
+            <fieldset class="provider-field">
+              <legend>Elige una opción de crédito</legend>
+              <div class="provider-grid">
+                <label class="provider-option">
+                  <input type="radio" name="provider" value="Agaval" data-rate="0.05" />
+                  <span class="provider-mark" aria-hidden="true">A</span>
+                  <span class="provider-info"><strong>Agaval</strong><small>5% · tasa única</small></span>
+                  <span class="provider-check" aria-hidden="true"></span>
+                </label>
+                <label class="provider-option">
+                  <input type="radio" name="provider" value="Addi" data-rate="0.10" />
+                  <span class="provider-mark" aria-hidden="true">a</span>
+                  <span class="provider-info"><strong>Addi</strong><small>10% · tasa única</small></span>
+                  <span class="provider-check" aria-hidden="true"></span>
+                </label>
+                <label class="provider-option">
+                  <input type="radio" name="provider" value="Sistecrédito" data-rate="0.10" />
+                  <span class="provider-mark" aria-hidden="true">S</span>
+                  <span class="provider-info"><strong>Sistecrédito</strong><small>10% · tasa única</small></span>
+                  <span class="provider-check" aria-hidden="true"></span>
+                </label>
+                <label class="provider-option">
+                  <input type="radio" name="provider" value="Banco de Bogotá" data-rate="0.03" />
+                  <span class="provider-mark" aria-hidden="true">B</span>
+                  <span class="provider-info"><strong>Banco de Bogotá</strong><small>3% · tasa única</small></span>
+                  <span class="provider-check" aria-hidden="true"></span>
+                </label>
+              </div>
+            </fieldset>
+          </section>
+
+          <aside class="result-card" aria-labelledby="resultTitle">
+            <div class="card-heading">
+              <span class="step-number">02</span>
+              <div>
+                <span class="eyebrow">CÁLCULO ESTIMADO</span>
+                <h2 id="resultTitle">Tu plan de pagos</h2>
+              </div>
+            </div>
+            <p class="selected-provider" id="selectedProvider">Selecciona una opción de crédito</p>
+            <div class="monthly-payment">
+              <span>Cuota mensual estimada</span>
+              <strong id="monthlyPayment">$ 0</strong>
+              <small id="installmentSummary">12 cuotas · monto por definir</small>
+            </div>
+            <dl class="result-breakdown">
+              <div><dt>Valor de compra</dt><dd id="purchaseValue">$ 0</dd></div>
+              <div><dt>Cuota inicial</dt><dd id="downPaymentValue">$ 0</dd></div>
+              <div><dt>Monto financiado</dt><dd id="financedAmount">$ 0</dd></div>
+              <div><dt>Interés estimado</dt><dd id="interestAmount">$ 0</dd></div>
+              <div class="result-total"><dt>Total en cuotas</dt><dd id="repaymentTotal">$ 0</dd></div>
+            </dl>
+            <p class="validation-message" id="validationMessage" role="status" aria-live="polite">
+              Selecciona una opción de crédito para calcular la cuota.
+            </p>
+            <button class="button button-primary submit-button" id="submitCredit" type="submit" disabled>
+              Solicitar financiamiento <span aria-hidden="true">→</span>
+            </button>
+            <p class="result-footnote">La aprobación, condiciones finales y disponibilidad dependen de la entidad seleccionada.</p>
+          </aside>
+        </form>
+
+        <section class="confirmation-card" id="confirmationCard" aria-labelledby="confirmationTitle" tabindex="-1" hidden>
+          <div class="confirmation-icon" aria-hidden="true">✓</div>
+          <span class="eyebrow">SIMULACIÓN GUARDADA EN ESTE NAVEGADOR</span>
+          <h2 id="confirmationTitle">Tu plan quedó registrado.</h2>
+          <p id="confirmationMessage"></p>
+          <dl class="confirmation-details" id="confirmationDetails"></dl>
+          <p class="confirmation-note">
+            Esta acción no envió una solicitud a la entidad financiera ni comparte tus datos. La simulación se
+            guarda localmente como demostración y no representa una aprobación.
+          </p>
+          <a class="button button-outline" href="catalogo.html">Volver al catálogo <span aria-hidden="true">↗</span></a>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a class="brand footer-brand" href="inicio.html#inicio">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span>Bythe<span class="brand-light">phone</span></span>
+        </a>
+        <p>Tecnología que te conecta.</p>
+        <a class="social-link" href="https://wa.me/573015379982" target="_blank" rel="noopener noreferrer">
+          Escríbenos por WhatsApp <span aria-hidden="true">↗</span>
+        </a>
+        <span>© Bythephone. Hecho para estar conectados.</span>
+      </div>
+    </footer>
+
+    <script>
+      const equipment = [
+        { id: "samsung-a55", brand: "Samsung", name: "Galaxy A55 5G", price: 1899900 },
+        { id: "iphone-13", brand: "Apple", name: "iPhone 13", price: 2399900 },
+        { id: "xiaomi-redmi-note-13", brand: "Xiaomi", name: "Redmi Note 13 Pro 5G", price: 1499900 },
+        { id: "motorola-edge-50", brand: "Motorola", name: "Edge 50 Fusion", price: 1399900 },
+        { id: "samsung-a35", brand: "Samsung", name: "Galaxy A35 5G", price: 1199900 },
+        { id: "xiaomi-redmi-13", brand: "Xiaomi", name: "Redmi Note 13", price: 799900 },
+        { id: "motorola-g84", brand: "Motorola", name: "Moto G84 5G", price: 899900 },
+        { id: "iphone-15", brand: "Apple", name: "iPhone 15", price: 3599900 }
+      ];
+      const storageKey = "bythephone-credit-simulation";
+      const copFormatter = new Intl.NumberFormat("es-CO", {
+        style: "currency",
+        currency: "COP",
+        maximumFractionDigits: 0
+      });
+      const form = document.querySelector("#creditForm");
+      const equipmentSelect = document.querySelector("#equipmentSelect");
+      const purchaseAmount = document.querySelector("#purchaseAmount");
+      const downPayment = document.querySelector("#downPayment");
+      const installments = document.querySelector("#installments");
+      const productField = document.querySelector("#productField");
+      const amountField = document.querySelector("#amountField");
+      const submitButton = document.querySelector("#submitCredit");
+      const validationMessage = document.querySelector("#validationMessage");
+
+      function money(amount) {
+        return copFormatter.format(amount);
+      }
+
+      function escapeHtml(value) {
+        return String(value).replace(/[&<>"']/g, (character) => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        })[character]);
+      }
+
+      function getPurchase() {
+        const type = form.querySelector('input[name="purchaseType"]:checked').value;
+        if (type === "amount") {
+          return {
+            type,
+            name: "Monto personalizado",
+            price: Number(purchaseAmount.value)
+          };
+        }
+        const selectedEquipment = equipment.find((item) => item.id === equipmentSelect.value);
+        return selectedEquipment
+          ? { type, name: `${selectedEquipment.brand} ${selectedEquipment.name}`, price: selectedEquipment.price }
+          : null;
+      }
+
+      function getSelection() {
+        const purchase = getPurchase();
+        const providerInput = form.querySelector('input[name="provider"]:checked');
+        const initial = Number(downPayment.value);
+        const term = Number(installments.value);
+        if (!purchase || !Number.isFinite(purchase.price) || purchase.price < 1 || purchase.price > 100000000) {
+          return { error: "Ingresa un valor de compra entre $ 1 y $ 100.000.000 COP." };
+        }
+        if (!Number.isFinite(initial) || initial < 0 || initial >= purchase.price) {
+          return { error: "La cuota inicial debe ser igual o mayor a $ 0 y menor al valor de compra." };
+        }
+        if (!Number.isInteger(term) || term < 3 || term > 36) {
+          return { error: "Selecciona un plazo entre 3 y 36 cuotas." };
+        }
+        if (!providerInput) return { error: "Selecciona una opción de crédito para continuar." };
+
+        const financed = purchase.price - initial;
+        const interest = Math.round(financed * Number(providerInput.dataset.rate));
+        const total = financed + interest;
+        return {
+          purchase,
+          provider: providerInput.value,
+          rate: Number(providerInput.dataset.rate),
+          initial,
+          term,
+          financed,
+          interest,
+          total,
+          monthly: Math.ceil(total / term)
+        };
+      }
+
+      function setValidation(message, isError) {
+        validationMessage.textContent = message;
+        validationMessage.classList.toggle("is-error", isError);
+      }
+
+      function updateSimulator() {
+        const purchaseType = form.querySelector('input[name="purchaseType"]:checked').value;
+        productField.hidden = purchaseType !== "product";
+        amountField.hidden = purchaseType !== "amount";
+        const purchase = getPurchase();
+        const price = purchase && Number.isFinite(purchase.price) ? purchase.price : 0;
+        downPayment.max = String(Math.max(0, price - 1));
+        document.querySelector("#downPaymentHint").textContent = price > 0
+          ? `Máximo ${money(Math.max(0, price - 1))}. No puede superar el valor de compra.`
+          : "Ingresa un monto para calcular tu cuota inicial.";
+        document.querySelector("#installmentOutput").textContent = `${installments.value} ${Number(installments.value) === 1 ? "cuota" : "cuotas"}`;
+
+        const selection = getSelection();
+        if (selection.error) {
+          const safelyValidPrice = purchase && Number.isFinite(purchase.price) && purchase.price > 0;
+          document.querySelector("#purchaseValue").textContent = safelyValidPrice ? money(purchase.price) : "$ 0";
+          document.querySelector("#downPaymentValue").textContent = safelyValidPrice ? money(Math.max(0, Number(downPayment.value) || 0)) : "$ 0";
+          document.querySelector("#financedAmount").textContent = "$ 0";
+          document.querySelector("#interestAmount").textContent = "$ 0";
+          document.querySelector("#repaymentTotal").textContent = "$ 0";
+          document.querySelector("#monthlyPayment").textContent = "$ 0";
+          document.querySelector("#installmentSummary").textContent = `${installments.value} cuotas · monto por definir`;
+          const selectedProvider = form.querySelector('input[name="provider"]:checked');
+          document.querySelector("#selectedProvider").textContent = selectedProvider
+            ? `${selectedProvider.value} · tasa única del ${Number(selectedProvider.dataset.rate) * 100}%`
+            : "Selecciona una opción de crédito";
+          setValidation(selection.error, Boolean(purchase && (Number(downPayment.value) >= purchase.price || Number(purchase.price) > 100000000 || Number(purchase.price) < 1)));
+          submitButton.disabled = true;
+          return;
+        }
+
+        document.querySelector("#purchaseValue").textContent = money(selection.purchase.price);
+        document.querySelector("#downPaymentValue").textContent = money(selection.initial);
+        document.querySelector("#financedAmount").textContent = money(selection.financed);
+        document.querySelector("#interestAmount").textContent = money(selection.interest);
+        document.querySelector("#repaymentTotal").textContent = money(selection.total);
+        document.querySelector("#monthlyPayment").textContent = money(selection.monthly);
+        document.querySelector("#installmentSummary").textContent = `${selection.term} cuotas · interés único del ${(selection.rate * 100).toFixed(0)}%`;
+        document.querySelector("#selectedProvider").textContent = selection.provider;
+        setValidation("Valores estimados. Ajusta el plazo o la cuota inicial para recalcular.", false);
+        submitButton.disabled = false;
+      }
+
+      function showConfirmation(simulation) {
+        document.querySelector("#confirmationMessage").textContent =
+          `Guardamos tu simulación ${simulation.number} para ${simulation.provider}.`;
+        document.querySelector("#confirmationDetails").innerHTML = `
+          <div><dt>Equipo o monto</dt><dd>${escapeHtml(simulation.purchaseName)}</dd></div>
+          <div><dt>Entidad seleccionada</dt><dd>${escapeHtml(simulation.provider)}</dd></div>
+          <div><dt>Cuota inicial</dt><dd>${money(simulation.downPayment)}</dd></div>
+          <div><dt>Plazo</dt><dd>${simulation.installments} cuotas</dd></div>
+          <div><dt>Interés estimado</dt><dd>${money(simulation.interest)}</dd></div>
+          <div><dt>Cuota mensual estimada</dt><dd>${money(simulation.monthlyPayment)}</dd></div>
+        `;
+        const confirmationCard = document.querySelector("#confirmationCard");
+        confirmationCard.hidden = false;
+        confirmationCard.focus();
+        confirmationCard.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      form.addEventListener("input", updateSimulator);
+      form.addEventListener("change", updateSimulator);
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const selection = getSelection();
+        if (selection.error) {
+          updateSimulator();
+          return;
+        }
+
+        const simulation = {
+          number: `BT-CRED-${Date.now().toString().slice(-8)}`,
+          createdAt: new Date().toISOString(),
+          purchaseType: selection.purchase.type,
+          purchaseName: selection.purchase.name,
+          purchaseValue: selection.purchase.price,
+          provider: selection.provider,
+          rate: selection.rate,
+          downPayment: selection.initial,
+          financedAmount: selection.financed,
+          installments: selection.term,
+          interest: selection.interest,
+          totalRepayment: selection.total,
+          monthlyPayment: selection.monthly
+        };
+
+        try {
+          localStorage.setItem(storageKey, JSON.stringify(simulation));
+          showConfirmation(simulation);
+        } catch (error) {
+          setValidation("No fue posible guardar la simulación. Revisa la configuración de almacenamiento del navegador.", true);
+        }
+      });
+
+      updateSimulator();
+    </script>
+  </body>
+</html>

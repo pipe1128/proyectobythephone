@@ -10,6 +10,8 @@
     <meta name="theme-color" content="#f5f6f8" />
     <title>Bythephone | Tecnología que te conecta</title>
     <link rel="stylesheet" href="sesion.css" />
+    <link rel="stylesheet" href="atencion.css" />
+    <script src="atencion.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -28,8 +30,12 @@
           <a href="sesion.html" id="loginNavLink">Iniciar sesión</a>
           <a href="inicio.html" data-section-link>Inicio</a>
           <a href="#catalogo" data-section-link>Catálogo</a>
+          <a href="cotizaciones.html">Cotizaciones</a>
+          <a href="credito.html">Crédito</a>
+          <a href="garantia.html">Garantía</a>
+          <a href="seguimiento.html">Seguimiento</a>
+          <a href="preguntas.html">Preguntas</a>
           <a href="envio.html">Envío</a>
-          <a href="#ubicacion" data-section-link>Tienda</a>
         </nav>
       </div>
     </header>
@@ -44,7 +50,7 @@
         <div class="login-content">
           <span class="eyebrow login-kicker">ACCESO DE CLIENTES</span>
           <h2 id="loginTitle">Inicia sesión</h2>
-          <p class="login-intro">Ingresa con tu correo registrado para acceder a la tienda.</p>
+          <p class="login-intro">Ingresa con tu correo registrado para acceder a Bythephone.</p>
           <form class="login-form" id="loginForm" onsubmit="location.hash = 'inicio'; return false;">
             <label for="loginEmail">Correo electrónico</label>
             <input

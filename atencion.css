@@ -1,0 +1,225 @@
+.site-header .main-nav {
+  gap: 18px;
+  font-size: 13px;
+}
+
+.site-header .main-nav a {
+  font-size: inherit;
+}
+
+@media (max-width: 1050px) {
+  .site-header .header-inner {
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    padding-block: 9px;
+  }
+
+  .site-header .main-nav {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    column-gap: 16px;
+    row-gap: 8px;
+  }
+
+  .site-header .main-nav a {
+    padding-block: 5px;
+    white-space: nowrap;
+  }
+}
+
+.contact-widget {
+  position: fixed;
+  z-index: 20;
+  right: max(22px, env(safe-area-inset-right));
+  bottom: max(22px, env(safe-area-inset-bottom));
+  display: grid;
+  justify-items: end;
+  gap: 12px;
+  font-family: var(--font-body, "DM Sans", sans-serif);
+}
+
+.contact-toggle {
+  display: inline-flex;
+  min-height: 54px;
+  align-items: center;
+  gap: 9px;
+  padding: 0 17px;
+  border: 0;
+  border-radius: 999px;
+  background: #2457d6;
+  box-shadow: 0 8px 26px rgba(24, 48, 112, 0.26);
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.contact-toggle:hover {
+  transform: translateY(-2px);
+  background: #1d46b4;
+}
+
+.contact-toggle:focus-visible,
+.contact-close:focus-visible,
+.contact-option:focus-visible {
+  outline: 2px solid #7995ff;
+  outline-offset: 3px;
+}
+
+.contact-toggle-icon {
+  display: grid;
+  width: 25px;
+  height: 25px;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 16px;
+}
+
+.contact-panel {
+  width: min(350px, calc(100vw - 32px));
+  padding: 17px;
+  border: 1px solid #e6e9f0;
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 0 16px 48px rgba(18, 30, 55, 0.2);
+}
+
+.contact-panel[hidden] {
+  display: none !important;
+}
+
+.contact-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.contact-eyebrow {
+  display: block;
+  margin-bottom: 5px;
+  color: #7e899a;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.15px;
+}
+
+.contact-panel-header h2 {
+  margin: 0;
+  color: #151b27;
+  font-family: var(--font-heading, "Manrope", sans-serif);
+  font-size: 15px;
+  letter-spacing: -0.3px;
+}
+
+.contact-close {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  place-items: center;
+  border: 1px solid #e9ebf0;
+  border-radius: 50%;
+  background: #fff;
+  color: #626d7d;
+  cursor: pointer;
+  font: inherit;
+  font-size: 19px;
+  line-height: 1;
+}
+
+.contact-option {
+  display: grid;
+  grid-template-columns: 35px minmax(0, 1fr) 16px;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 3px;
+  border-top: 1px solid #f0f1f4;
+}
+
+.contact-option > span:nth-child(2) {
+  display: grid;
+  gap: 3px;
+}
+
+.contact-option strong {
+  color: #202838;
+  font-size: 11px;
+}
+
+.contact-option small {
+  color: #788293;
+  font-size: 9px;
+}
+
+.contact-option:hover strong {
+  color: #3157e8;
+}
+
+.contact-option-icon {
+  display: grid;
+  width: 33px;
+  height: 33px;
+  place-items: center;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.whatsapp-icon {
+  background: #e8f7ef;
+  color: #218c54;
+}
+
+.phone-icon {
+  background: #edf1ff;
+  color: #3157e8;
+}
+
+.faq-icon {
+  background: #f2efff;
+  color: #6a52bf;
+}
+
+.contact-arrow {
+  color: #8792a2;
+  font-size: 12px;
+}
+
+@media (max-width: 800px) {
+  .site-header .main-nav {
+    font-size: 12px;
+  }
+}
+
+.contact-hours {
+  margin: 10px 0 0;
+  padding-top: 11px;
+  border-top: 1px solid #f0f1f4;
+  color: #7d8795;
+  font-size: 9px;
+  line-height: 1.55;
+}
+
+@media (max-width: 480px) {
+  .contact-widget {
+    right: max(14px, env(safe-area-inset-right));
+    bottom: max(14px, env(safe-area-inset-bottom));
+  }
+
+  .contact-toggle {
+    min-height: 49px;
+    padding-inline: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-toggle {
+    transition-duration: 0.01ms;
+  }
+}

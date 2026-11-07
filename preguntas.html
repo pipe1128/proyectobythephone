@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Encuentra respuestas sobre garantías, formas de pago y tiempos de entrega en Bythephone."
+    />
+    <meta name="theme-color" content="#f5f6f8" />
+    <title>Preguntas frecuentes | Bythephone</title>
+    <link rel="stylesheet" href="preguntas.css" />
+    <link rel="stylesheet" href="atencion.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="atencion.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="inicio.html#inicio" aria-label="Bythephone, ir al inicio">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span>Bythe<span class="brand-light">phone</span></span>
+        </a>
+        <nav class="main-nav" aria-label="Navegación principal">
+          <a href="sesion.html">Iniciar sesión</a>
+          <a href="inicio.html#inicio">Inicio</a>
+          <a href="catalogo.html">Catálogo</a>
+          <a href="cotizaciones.html">Cotizaciones</a>
+          <a href="credito.html">Crédito</a>
+          <a href="garantia.html">Garantía</a>
+          <a href="seguimiento.html">Seguimiento</a>
+          <a href="preguntas.html" aria-current="page">Preguntas</a>
+          <a href="envio.html">Envío</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="faq-hero">
+        <div class="faq-hero-inner">
+          <a class="back-link" href="inicio.html#inicio">← Volver al inicio</a>
+          <span class="eyebrow">AYUDA BYTHEPHONE</span>
+          <h1>Resolvemos tus<br /><span>preguntas.</span></h1>
+          <p>Busca por palabra clave o filtra por tema para encontrar información sobre garantías, pagos y entregas.</p>
+        </div>
+      </section>
+
+      <section class="faq-section" aria-label="Preguntas frecuentes">
+        <form class="faq-search" id="faqSearchForm" role="search">
+          <label for="faqSearch">¿Qué necesitas saber?</label>
+          <div class="search-input-wrap">
+            <span aria-hidden="true">⌕</span>
+            <input id="faqSearch" type="search" placeholder="Ej. garantía, medios de pago, entrega..." autocomplete="off" />
+            <button id="clearSearch" type="button" aria-label="Limpiar búsqueda" hidden>×</button>
+          </div>
+        </form>
+
+        <div class="faq-layout">
+          <aside class="category-panel" aria-label="Filtrar preguntas por categoría">
+            <span class="eyebrow">EXPLORA POR TEMA</span>
+            <div class="category-list" role="group" aria-label="Categorías de preguntas frecuentes">
+              <button class="category-button is-active" type="button" data-category="all" aria-pressed="true">Todas las preguntas <span data-category-count="all"></span></button>
+              <button class="category-button" type="button" data-category="garantias" aria-pressed="false">Garantías <span data-category-count="garantias"></span></button>
+              <button class="category-button" type="button" data-category="pagos" aria-pressed="false">Métodos de pago <span data-category-count="pagos"></span></button>
+              <button class="category-button" type="button" data-category="entregas" aria-pressed="false">Tiempos de entrega <span data-category-count="entregas"></span></button>
+            </div>
+            <div class="contact-prompt">
+              <span class="prompt-icon" aria-hidden="true">?</span>
+              <strong>¿No encuentras lo que buscas?</strong>
+              <p>Escríbenos y te ayudamos con tu consulta.</p>
+              <button class="text-contact-button" id="openContact" type="button">Ver opciones de atención <span aria-hidden="true">↗</span></button>
+            </div>
+          </aside>
+
+          <div class="faq-results">
+            <div class="results-heading">
+              <div>
+                <span class="eyebrow">CENTRO DE AYUDA</span>
+                <h2 id="resultsTitle">Preguntas frecuentes</h2>
+              </div>
+              <p id="resultsCount" role="status" aria-live="polite"></p>
+            </div>
+
+            <div class="question-list" id="questionList">
+              <details class="faq-item" data-category="garantias">
+                <summary>¿Qué cubre la garantía de mi equipo?<span class="faq-chevron" aria-hidden="true"></span></summary>
+                <div class="faq-answer">
+                  <p>La cobertura y vigencia dependen de las condiciones del fabricante y de la compra. Conserva tu comprobante y consulta los términos aplicables a tu equipo con nuestro equipo de atención; la revisión técnica determina si la falla está cubierta.</p>
+                  <a href="garantia.html">Radicar una solicitud de servicio <span aria-hidden="true">↗</span></a>
+                </div>
+              </details>
+              <details class="faq-item" data-category="garantias">
+                <summary>¿Cómo solicito una revisión por garantía o servicio técnico?<span class="faq-chevron" aria-hidden="true"></span></summary>
+                <div class="faq-answer">
+                  <p>Completa el formulario de servicio con los datos del equipo, una descripción de la falla y tu dirección. Puedes indicar una fecha y franja horaria preferidas para la recogida; el horario queda sujeto a confirmación.</p>
+                  <a href="garantia.html">Iniciar radicación <span aria-hidden="true">↗</span></a>
+                </div>
+              </details>
+              <details class="faq-item" data-category="garantias">
+                <summary>¿Cómo consulto el estado de mi servicio técnico?<span class="faq-chevron" aria-hidden="true"></span></summary>
+                <div class="faq-answer">
+                  <p>Ingresa el código único de ticket que recibiste al radicar. La página puede mostrar Recibido, En diagnóstico, En reparación o Listo si el estado se encuentra actualizado.</p>
+                  <a href="seguimiento.html">Ir al seguimiento de tickets <span aria-hidden="true">↗</span></a>
+                </div>
+              </details>
+              <details class="faq-item" data-category="garantias">
+                <summary>¿La recogida de mi equipo queda confirmada al radicar?<span class="faq-chevron" aria-hidden="true"></span></summary>
+                <div class="faq-answer">
+                  <p>Al enviar el formulario se registra la fecha y franja que prefieres. En esta plataforma demostrativa no se confirma la recogida con una transportadora; contacta a nuestro equipo para verificar cobertura y disponibilidad.</p>
+                </div>
+              </details>
+              <details class="faq-item" data-category="pagos">
+                <summary>¿Qué métodos de pago acepta Bythephone?<span class="faq-chevron" aria-hidden="true"></span></summary>
+                <div class="faq-answer">
+                  <p>Los métodos disponibles deben confirmarse directamente con Bythephone antes de realizar el pago. El checkout de este sitio es una demostración: no procesa pagos ni solicita datos de tarjeta.</p>
+                  <button class="text-contact-button" type="button" data-open-contact>Consultar con atención <span aria-hidden="true">↗</span></button>
+                </div>
+              </details>
+              <details class="faq-item" data-category="pagos">
+                <summary>¿Puedo financiar mi compra?<span class="faq-chevron" aria-hidden="true"></span></summary>
+                <div class="faq-answer">
+                  <p>El simulador permite explorar opciones indicativas de Agaval, Addi, Sistecrédito y Banco de Bogotá. Sus cálculos son orientativos, no son una oferta ni una aprobación; confirma condiciones, tasas y elegibilidad con la entidad y nuestro equipo.</p>
+                  <a href="credito.html">Abrir el simulador de crédito <span aria-hidden="true">↗</span></a>
+                </div>
+              </details>
+              <details class="faq-item" data-category="pagos">
+                <summary>¿Los precios cotizados o simulados son definitivos?<span class="faq-chevron" aria-hidden="true"></span></summary>
+                <div class="faq-answer">
+                  <p>No necesariamente. Los valores del catálogo, las cotizaciones y el simulador son referenciales. Una cotización tiene la vigencia indicada en el documento; al vencer, confirma precio y disponibilidad con Bythephone mediante una nueva cotización.</p>
+                  <a href="cotizaciones.html">Ver mis cotizaciones <span aria-hidden="true">↗</span></a>
+                </div>
+              </details>
+              <details class="faq-item" data-category="entregas">
+                <summary>¿Cuánto tarda la entrega de un pedido?<span class="faq-chevron" aria-hidden="true"></span></summary>
+                <div class="faq-answer">
+                  <p>El plazo depende del destino, la cobertura y la disponibilidad del equipo. Los estimados que pueda mostrar la plataforma son orientativos y no sustituyen la confirmación de Bythephone o del transportador.</p>
+                  <a href="envio.html">Consultar información de envío <span aria-hidden="true">↗</span></a>
+                </div>
+              </details>
+              <details class="faq-item" data-category="entregas">
+                <summary>¿Puedo consultar la cobertura y el costo del envío?<span class="faq-chevron" aria-hidden="true"></span></summary>
+                <div class="faq-answer">
+                  <p>Consulta a nuestro equipo la cobertura, tarifa y plazo para tu dirección. Los cálculos de envío del checkout son demostrativos y no representan tarifas confirmadas por una transportadora.</p>
+                  <a href="envio.html">Ver estimación de envío <span aria-hidden="true">↗</span></a>
+                </div>
+              </details>
+            </div>
+
+            <div class="empty-state" id="emptyState" hidden>
+              <span class="empty-icon" aria-hidden="true">⌕</span>
+              <h3>No encontramos coincidencias</h3>
+              <p>Prueba otra palabra o selecciona una categoría diferente.</p>
+              <button class="button button-outline" id="resetFilters" type="button">Ver todas las preguntas</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a class="brand footer-brand" href="inicio.html#inicio">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span>Bythe<span class="brand-light">phone</span></span>
+        </a>
+        <p>Tecnología que te conecta.</p>
+        <a class="social-link" href="https://wa.me/573015379982" target="_blank" rel="noopener noreferrer">
+          Escríbenos por WhatsApp <span aria-hidden="true">↗</span>
+        </a>
+        <span>© Bythephone. Hecho para estar conectados.</span>
+      </div>
+    </footer>
+
+    <script>
+      const questionList = document.querySelector("#questionList");
+      const categoryButtons = [...document.querySelectorAll(".category-button[data-category]")];
+      const searchInput = document.querySelector("#faqSearch");
+      const emptyState = document.querySelector("#emptyState");
+      let activeCategory = "all";
+
+      function normalizeText(value) {
+        return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es");
+      }
+
+      function renderQuestions() {
+        const searchTerm = normalizeText(searchInput.value.trim());
+        let visibleCount = 0;
+        questionList.querySelectorAll(".faq-item").forEach((item) => {
+          const matchesCategory = activeCategory === "all" || item.dataset.category === activeCategory;
+          const matchesSearch = !searchTerm || normalizeText(item.textContent).includes(searchTerm);
+          const isVisible = matchesCategory && matchesSearch;
+          item.hidden = !isVisible;
+          if (isVisible) visibleCount += 1;
+        });
+
+        document.querySelector("#resultsCount").textContent =
+          `${visibleCount} ${visibleCount === 1 ? "pregunta" : "preguntas"}`;
+        document.querySelector("#resultsTitle").textContent =
+          searchTerm ? "Resultados de búsqueda" :
+          activeCategory === "all" ? "Preguntas frecuentes" :
+          categoryButtons.find((button) => button.dataset.category === activeCategory).firstChild.textContent.trim();
+        emptyState.hidden = visibleCount > 0;
+        questionList.hidden = visibleCount === 0;
+        document.querySelector("#clearSearch").hidden = searchInput.value.length === 0;
+      }
+
+      categoryButtons.forEach((button) => {
+        const count = button.dataset.category === "all"
+          ? questionList.querySelectorAll(".faq-item").length
+          : questionList.querySelectorAll(`.faq-item[data-category="${button.dataset.category}"]`).length;
+        button.querySelector("[data-category-count]").textContent = String(count);
+        button.addEventListener("click", () => {
+          activeCategory = button.dataset.category;
+          categoryButtons.forEach((categoryButton) => {
+            const isActive = categoryButton === button;
+            categoryButton.classList.toggle("is-active", isActive);
+            categoryButton.setAttribute("aria-pressed", String(isActive));
+          });
+          renderQuestions();
+        });
+      });
+
+      searchInput.addEventListener("input", renderQuestions);
+      document.querySelector("#clearSearch").addEventListener("click", () => {
+        searchInput.value = "";
+        renderQuestions();
+        searchInput.focus();
+      });
+      document.querySelector("#resetFilters").addEventListener("click", () => {
+        activeCategory = "all";
+        searchInput.value = "";
+        categoryButtons[0].click();
+        searchInput.focus();
+      });
+
+      document.querySelectorAll("[data-open-contact]").forEach((button) => {
+        button.addEventListener("click", () => document.querySelector(".contact-toggle").click());
+      });
+      document.querySelector("#openContact").addEventListener("click", () => {
+        document.querySelector(".contact-toggle").click();
+      });
+
+      renderQuestions();
+    </script>
+  </body>
+</html>

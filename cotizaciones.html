@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Revisa tus equipos de interés y genera una cotización Bythephone con fecha de vigencia."
+    />
+    <meta name="theme-color" content="#f5f6f8" />
+    <title>Cotizaciones | Bythephone</title>
+    <link rel="stylesheet" href="cotizaciones.css" />
+    <link rel="stylesheet" href="atencion.css" />
+    <script src="atencion.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="inicio.html#inicio" aria-label="Bythephone, ir al inicio">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span>Bythe<span class="brand-light">phone</span></span>
+        </a>
+        <nav class="main-nav" aria-label="Navegación principal">
+          <a href="sesion.html">Iniciar sesión</a>
+          <a href="inicio.html#inicio">Inicio</a>
+          <a href="catalogo.html">Catálogo</a>
+          <a href="cotizaciones.html" aria-current="page">Cotizaciones</a>
+          <a href="credito.html">Crédito</a>
+          <a href="garantia.html">Garantía</a>
+          <a href="seguimiento.html">Seguimiento</a>
+          <a href="preguntas.html">Preguntas</a>
+          <a href="envio.html">Envío</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="quote-hero">
+        <div class="quote-hero-inner">
+          <a class="back-link" href="catalogo.html">← Volver al catálogo</a>
+          <span class="eyebrow">COTIZACIONES BYTHEPHONE</span>
+          <h1>Tu selección,<br /><span>lista para cotizar.</span></h1>
+          <p>Revisa los productos de tu lista de interés y genera un documento con precios y fecha límite de vigencia.</p>
+        </div>
+      </section>
+
+      <section class="quote-section" aria-label="Crear cotización">
+        <div class="quote-notice" role="note">
+          <span class="notice-icon" aria-hidden="true">i</span>
+          <p>
+            Los precios son informativos y la disponibilidad no queda reservada. Una vez vencida la cotización,
+            los precios y las existencias deberán confirmarse al generar una nueva dentro de la plataforma.
+          </p>
+        </div>
+
+        <div class="quote-layout">
+          <section class="interest-card" aria-labelledby="interestTitle">
+            <div class="card-heading">
+              <span class="step-number">01</span>
+              <div>
+                <span class="eyebrow">PRODUCTOS SELECCIONADOS</span>
+                <h2 id="interestTitle">Tu lista de interés</h2>
+              </div>
+            </div>
+            <div class="interest-list" id="interestList"></div>
+            <div class="empty-state" id="emptyInterest" hidden>
+              <span class="empty-icon" aria-hidden="true">＋</span>
+              <h3>Aún no tienes productos</h3>
+              <p>Agrega equipos a tu lista de interés desde el catálogo para preparar una cotización.</p>
+              <a class="button button-outline" href="catalogo.html">Explorar catálogo <span aria-hidden="true">↗</span></a>
+            </div>
+          </section>
+
+          <aside class="summary-card" aria-labelledby="summaryTitle">
+            <div class="card-heading">
+              <span class="step-number">02</span>
+              <div>
+                <span class="eyebrow">RESUMEN</span>
+                <h2 id="summaryTitle">Cotización estimada</h2>
+              </div>
+            </div>
+            <p class="summary-copy">La cotización incluye los productos de tu lista y tendrá vigencia de 7 días calendario.</p>
+            <div class="summary-totals">
+              <p><span>Productos</span><strong id="productCount">0</strong></p>
+              <p class="total-row"><span>Total estimado</span><strong id="subtotalAmount">$ 0</strong></p>
+            </div>
+            <button class="button button-primary generate-button" id="generateQuote" type="button" disabled>
+              Generar cotización <span aria-hidden="true">→</span>
+            </button>
+            <p class="quote-status" id="quoteStatus" role="status" aria-live="polite">
+              Agrega productos desde el catálogo para comenzar.
+            </p>
+          </aside>
+        </div>
+
+        <section class="quote-document" id="quoteDocument" aria-labelledby="documentTitle" hidden>
+          <div class="document-header">
+            <div class="document-brand">
+              <span class="brand-mark" aria-hidden="true">B</span>
+              <div>
+                <strong>Bythephone</strong>
+                <span>Tecnología que te conecta</span>
+              </div>
+            </div>
+            <div class="document-title">
+              <span class="eyebrow">PROPUESTA COMERCIAL</span>
+              <h2 id="documentTitle">Cotización</h2>
+              <span class="quote-number" id="quoteNumber"></span>
+            </div>
+          </div>
+
+          <div class="document-parties">
+            <div>
+              <span class="document-label">EMITIDA POR</span>
+              <strong>Bythephone</strong>
+              <span>Colombia · +57 301 537 9982</span>
+            </div>
+            <dl class="document-dates">
+              <div><dt>Fecha de generación</dt><dd id="generatedDate"></dd></div>
+              <div><dt>Válida hasta</dt><dd id="validUntil"></dd></div>
+            </dl>
+          </div>
+
+          <div class="document-table-wrap">
+            <table class="document-table">
+              <thead>
+                <tr>
+                  <th scope="col">Producto</th>
+                  <th scope="col">Cantidad</th>
+                  <th scope="col">Precio unitario</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </thead>
+              <tbody id="quoteItems"></tbody>
+            </table>
+          </div>
+
+          <div class="document-total">
+            <span>Total estimado de productos</span>
+            <strong id="quoteTotal"></strong>
+          </div>
+          <p class="document-terms">
+            Esta cotización vence en la fecha indicada. No garantiza ni reserva inventario. Después del vencimiento,
+            los precios y la disponibilidad están sujetos a confirmación mediante una nueva generación de cotización
+            dentro de la plataforma. El envío no está incluido.
+          </p>
+          <div class="document-actions">
+            <button class="button button-primary" id="downloadQuote" type="button">Descargar / guardar PDF <span aria-hidden="true">↓</span></button>
+            <span>En la ventana de impresión, selecciona «Guardar como PDF».</span>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a class="brand footer-brand" href="inicio.html#inicio">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span>Bythe<span class="brand-light">phone</span></span>
+        </a>
+        <p>Tecnología que te conecta.</p>
+        <a class="social-link" href="https://wa.me/573015379982" target="_blank" rel="noopener noreferrer">
+          Escríbenos por WhatsApp <span aria-hidden="true">↗</span>
+        </a>
+        <span>© Bythephone. Hecho para estar conectados.</span>
+      </div>
+    </footer>
+
+    <script>
+      const interestStorageKey = "bythephone-interest-list";
+      const quoteStorageKey = "bythephone-current-quote";
+      const products = [
+        { id: "samsung-a55", brand: "Samsung", name: "Galaxy A55 5G", price: 1899900 },
+        { id: "iphone-13", brand: "Apple", name: "iPhone 13", price: 2399900 },
+        { id: "xiaomi-redmi-note-13", brand: "Xiaomi", name: "Redmi Note 13 Pro 5G", price: 1499900 },
+        { id: "motorola-edge-50", brand: "Motorola", name: "Edge 50 Fusion", price: 1399900 },
+        { id: "samsung-a35", brand: "Samsung", name: "Galaxy A35 5G", price: 1199900 },
+        { id: "xiaomi-redmi-13", brand: "Xiaomi", name: "Redmi Note 13", price: 799900 },
+        { id: "motorola-g84", brand: "Motorola", name: "Moto G84 5G", price: 899900 },
+        { id: "iphone-15", brand: "Apple", name: "iPhone 15", price: 3599900 }
+      ];
+      const productById = new Map(products.map((product) => [product.id, product]));
+      const copFormatter = new Intl.NumberFormat("es-CO", {
+        style: "currency",
+        currency: "COP",
+        maximumFractionDigits: 0
+      });
+      const dateFormatter = new Intl.DateTimeFormat("es-CO", { dateStyle: "long" });
+      const interestList = document.querySelector("#interestList");
+      const emptyInterest = document.querySelector("#emptyInterest");
+      const quoteStatus = document.querySelector("#quoteStatus");
+      const generateButton = document.querySelector("#generateQuote");
+      let interestItems = readInterestItems();
+      let currentQuote = readCurrentQuote();
+
+      function money(amount) {
+        return copFormatter.format(amount);
+      }
+
+      function escapeHtml(value) {
+        return String(value).replace(/[&<>"']/g, (character) => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        })[character]);
+      }
+
+      function setStatus(message, isError = false) {
+        quoteStatus.textContent = message;
+        quoteStatus.classList.toggle("is-error", isError);
+      }
+
+      function readInterestItems() {
+        try {
+          const storedItems = JSON.parse(localStorage.getItem(interestStorageKey) || "[]");
+          if (!Array.isArray(storedItems)) throw new Error("La lista guardada no tiene un formato válido.");
+          return storedItems
+            .map((item) => typeof item === "string" ? { id: item, quantity: 1 } : item)
+            .filter((item) =>
+              item &&
+              productById.has(item.id) &&
+              Number.isInteger(item.quantity) &&
+              item.quantity >= 1 &&
+              item.quantity <= 99
+            );
+        } catch (error) {
+          setStatus("No fue posible leer tu lista de interés. Revisa la configuración de almacenamiento del navegador.", true);
+          return [];
+        }
+      }
+
+      function saveInterestItems(nextItems) {
+        try {
+          localStorage.setItem(interestStorageKey, JSON.stringify(nextItems));
+          interestItems = nextItems;
+          return true;
+        } catch (error) {
+          setStatus("No fue posible guardar los cambios de tu lista. Revisa la configuración de almacenamiento del navegador.", true);
+          return false;
+        }
+      }
+
+      function isValidQuote(quote) {
+        return quote &&
+          typeof quote.number === "string" &&
+          Number.isFinite(Date.parse(quote.generatedAt)) &&
+          Number.isFinite(Date.parse(quote.validUntil)) &&
+          Array.isArray(quote.items) &&
+          quote.items.length > 0 &&
+          quote.items.every((item) =>
+            item &&
+            typeof item.name === "string" &&
+            typeof item.brand === "string" &&
+            Number.isFinite(item.price) &&
+            item.price >= 0 &&
+            Number.isInteger(item.quantity) &&
+            item.quantity >= 1 &&
+            item.quantity <= 99
+          );
+      }
+
+      function readCurrentQuote() {
+        try {
+          const storedQuote = JSON.parse(localStorage.getItem(quoteStorageKey) || "null");
+          if (storedQuote === null) return null;
+          if (!isValidQuote(storedQuote)) throw new Error("La cotización guardada no tiene un formato válido.");
+          return storedQuote;
+        } catch (error) {
+          setStatus("No fue posible leer la cotización guardada. Puedes generar una nueva.", true);
+          return null;
+        }
+      }
+
+      function renderInterestList() {
+        const validItems = interestItems.filter((item) => productById.has(item.id));
+        const subtotal = validItems.reduce((total, item) => total + productById.get(item.id).price * item.quantity, 0);
+        document.querySelector("#productCount").textContent = String(validItems.reduce((total, item) => total + item.quantity, 0));
+        document.querySelector("#subtotalAmount").textContent = money(subtotal);
+        generateButton.disabled = validItems.length === 0;
+        emptyInterest.hidden = validItems.length > 0;
+        interestList.innerHTML = validItems.map((item) => {
+          const product = productById.get(item.id);
+          return `
+            <article class="interest-item">
+              <div class="product-mark" aria-hidden="true">${escapeHtml(product.brand.slice(0, 1))}</div>
+              <div class="interest-item-info">
+                <span class="product-brand">${escapeHtml(product.brand)}</span>
+                <h3>${escapeHtml(product.name)}</h3>
+                <strong>${money(product.price)} <small>por unidad</small></strong>
+              </div>
+              <div class="item-controls">
+                <label for="quantity-${escapeHtml(product.id)}">Cantidad</label>
+                <input
+                  id="quantity-${escapeHtml(product.id)}"
+                  type="number"
+                  min="1"
+                  max="99"
+                  value="${item.quantity}"
+                  data-quantity-for="${escapeHtml(product.id)}"
+                  aria-label="Cantidad de ${escapeHtml(product.name)}"
+                />
+                <button class="remove-item" type="button" data-remove-item="${escapeHtml(product.id)}">Quitar</button>
+              </div>
+            </article>
+          `;
+        }).join("");
+
+        if (validItems.length > 0 && !quoteStatus.classList.contains("is-error")) {
+          setStatus("Ajusta cantidades si lo necesitas y genera tu cotización cuando estés listo.");
+        }
+      }
+
+      function renderQuote(quote) {
+        const validUntil = new Date(quote.validUntil);
+        const isExpired = Date.now() > validUntil.getTime();
+        document.querySelector("#quoteNumber").textContent = quote.number;
+        document.querySelector("#generatedDate").textContent = dateFormatter.format(new Date(quote.generatedAt));
+        document.querySelector("#validUntil").textContent = dateFormatter.format(validUntil);
+        document.querySelector("#quoteItems").innerHTML = quote.items.map((item) => `
+          <tr>
+            <td><strong>${escapeHtml(item.brand)} ${escapeHtml(item.name)}</strong></td>
+            <td>${item.quantity}</td>
+            <td>${money(item.price)}</td>
+            <td>${money(item.price * item.quantity)}</td>
+          </tr>
+        `).join("");
+        const total = quote.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+        document.querySelector("#quoteTotal").textContent = money(total);
+        document.querySelector("#quoteDocument").hidden = false;
+        const downloadButton = document.querySelector("#downloadQuote");
+        downloadButton.disabled = isExpired;
+        downloadButton.textContent = isExpired ? "Cotización vencida" : "Descargar / guardar PDF ↓";
+        if (isExpired) {
+          setStatus("Esta cotización venció. Genera una nueva para confirmar precios y disponibilidad.", true);
+        } else {
+          setStatus(`Cotización vigente hasta el ${dateFormatter.format(validUntil)}.`);
+        }
+      }
+
+      interestList.addEventListener("change", (event) => {
+        const quantityInput = event.target.closest("[data-quantity-for]");
+        if (!quantityInput) return;
+        const item = interestItems.find((entry) => entry.id === quantityInput.dataset.quantityFor);
+        if (!item) return;
+        const quantity = Number(quantityInput.value);
+        if (!Number.isInteger(quantity) || quantity < 1 || quantity > 99) {
+          quantityInput.value = String(item.quantity);
+          setStatus("La cantidad debe estar entre 1 y 99 unidades.", true);
+          return;
+        }
+        const nextItems = interestItems.map((entry) =>
+          entry.id === item.id ? { ...entry, quantity } : entry
+        );
+        if (saveInterestItems(nextItems)) {
+          renderInterestList();
+          if (!quoteStatus.classList.contains("is-error")) {
+            setStatus("Cantidad actualizada. Genera una nueva cotización para incluir este cambio.");
+          }
+        }
+      });
+
+      interestList.addEventListener("click", (event) => {
+        const removeButton = event.target.closest("[data-remove-item]");
+        if (!removeButton) return;
+        const nextItems = interestItems.filter((item) => item.id !== removeButton.dataset.removeItem);
+        if (saveInterestItems(nextItems)) {
+          renderInterestList();
+          if (!quoteStatus.classList.contains("is-error")) {
+            setStatus("Producto retirado de tu lista. Genera una nueva cotización para actualizarla.");
+          }
+        }
+      });
+
+      generateButton.addEventListener("click", () => {
+        const items = interestItems
+          .filter((item) => productById.has(item.id))
+          .map((item) => {
+            const product = productById.get(item.id);
+            return { id: product.id, brand: product.brand, name: product.name, price: product.price, quantity: item.quantity };
+          });
+        if (items.length === 0) {
+          setStatus("Agrega al menos un producto desde el catálogo antes de generar la cotización.", true);
+          return;
+        }
+
+        const generatedAt = new Date();
+        const validUntil = new Date(generatedAt);
+        validUntil.setDate(validUntil.getDate() + 7);
+        validUntil.setHours(23, 59, 59, 999);
+        const quote = {
+          number: `BT-COT-${Date.now().toString().slice(-8)}`,
+          generatedAt: generatedAt.toISOString(),
+          validUntil: validUntil.toISOString(),
+          items
+        };
+        try {
+          localStorage.setItem(quoteStorageKey, JSON.stringify(quote));
+          currentQuote = quote;
+          renderQuote(currentQuote);
+          document.querySelector("#quoteDocument").scrollIntoView({ behavior: "smooth", block: "start" });
+        } catch (error) {
+          setStatus("No fue posible guardar la cotización. Revisa la configuración de almacenamiento del navegador e inténtalo de nuevo.", true);
+        }
+      });
+
+      document.querySelector("#downloadQuote").addEventListener("click", () => {
+        if (!currentQuote || Date.now() > Date.parse(currentQuote.validUntil)) {
+          setStatus("Esta cotización venció. Genera una nueva antes de descargar el PDF.", true);
+          return;
+        }
+        window.print();
+      });
+
+      renderInterestList();
+      if (currentQuote) renderQuote(currentQuote);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Consulta el estado y la línea de tiempo de tu servicio técnico Bythephone con el código de ticket."
+    />
+    <meta name="theme-color" content="#f5f6f8" />
+    <title>Seguimiento de servicio técnico | Bythephone</title>
+    <link rel="stylesheet" href="seguimiento.css" />
+    <link rel="stylesheet" href="atencion.css" />
+    <script src="atencion.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="inicio.html#inicio" aria-label="Bythephone, ir al inicio">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span>Bythe<span class="brand-light">phone</span></span>
+        </a>
+        <nav class="main-nav" aria-label="Navegación principal">
+          <a href="sesion.html">Iniciar sesión</a>
+          <a href="inicio.html#inicio">Inicio</a>
+          <a href="catalogo.html">Catálogo</a>
+          <a href="cotizaciones.html">Cotizaciones</a>
+          <a href="credito.html">Crédito</a>
+          <a href="garantia.html">Garantía</a>
+          <a href="seguimiento.html" aria-current="page">Seguimiento</a>
+          <a href="preguntas.html">Preguntas</a>
+          <a href="envio.html">Envío</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="tracking-hero">
+        <div class="tracking-hero-inner">
+          <a class="back-link" href="garantia.html">← Radicar una solicitud</a>
+          <span class="eyebrow">SEGUIMIENTO DE SERVICIO TÉCNICO</span>
+          <h1>Tu solicitud,<br /><span>paso a paso.</span></h1>
+          <p>Ingresa el código único de tu ticket para consultar el estado actual y el historial de atención.</p>
+        </div>
+      </section>
+
+      <section class="tracking-section" aria-label="Consultar seguimiento de servicio técnico">
+        <div class="demo-notice" role="note">
+          <span class="notice-icon" aria-hidden="true">i</span>
+          <p>
+            El seguimiento y las actualizaciones se guardan en este navegador para demostración. La información no
+            está conectada a un taller ni a un sistema administrativo central; en otros dispositivos no se sincronizará.
+          </p>
+        </div>
+
+        <form class="ticket-search" id="ticketForm">
+          <label for="ticketInput">Código único de ticket</label>
+          <div class="search-controls">
+            <input id="ticketInput" name="ticket" type="text" placeholder="Ej. BT-ST-1A2B3C4D5E" autocomplete="off" maxlength="24" required />
+            <button class="button button-primary" type="submit">Consultar estado <span aria-hidden="true">→</span></button>
+          </div>
+          <p class="search-hint">Encontrarás el código en la confirmación de radicación de tu servicio técnico.</p>
+        </form>
+
+        <p class="lookup-message" id="lookupMessage" role="status" aria-live="polite" hidden></p>
+
+        <section class="tracking-result" id="trackingResult" aria-labelledby="trackingTitle" hidden>
+          <div class="result-header">
+            <div>
+              <span class="eyebrow">ESTADO DE TU SOLICITUD</span>
+              <h2 id="trackingTitle">Seguimiento del servicio</h2>
+            </div>
+            <span class="ticket-pill" id="resultTicket"></span>
+          </div>
+
+          <div class="current-status" aria-live="polite">
+            <span class="status-pulse" aria-hidden="true"></span>
+            <div>
+              <span>HITO ACTUAL</span>
+              <strong id="currentStatus"></strong>
+              <small id="statusUpdated"></small>
+            </div>
+          </div>
+
+          <div class="timeline-wrap">
+            <h3>Línea de tiempo</h3>
+            <ol class="timeline" id="timeline"></ol>
+          </div>
+
+          <details class="request-details">
+            <summary>Ver datos de la solicitud</summary>
+            <dl class="request-data" id="requestData"></dl>
+          </details>
+
+          <details class="admin-panel" id="adminPanel">
+            <summary>Panel de actualización de administrador <span>Demostración local · sin autenticación</span></summary>
+            <form id="adminForm" class="admin-form">
+              <label for="adminStatus">Nuevo estado del equipo</label>
+              <div class="admin-controls">
+                <select id="adminStatus" name="status" required>
+                  <option value="Recibido">Recibido</option>
+                  <option value="En diagnóstico">En diagnóstico</option>
+                  <option value="En reparación">En reparación</option>
+                  <option value="Listo">Listo</option>
+                </select>
+                <button class="button button-outline" type="submit">Actualizar estado</button>
+              </div>
+              <p>En una implementación real, solo personal autorizado podría actualizar el estado desde un servidor central.</p>
+              <p class="admin-message" id="adminMessage" role="status" aria-live="polite" hidden></p>
+            </form>
+          </details>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <a class="brand footer-brand" href="inicio.html#inicio">
+          <span class="brand-mark" aria-hidden="true">B</span>
+          <span>Bythe<span class="brand-light">phone</span></span>
+        </a>
+        <p>Tecnología que te conecta.</p>
+        <a class="social-link" href="https://wa.me/573015379982" target="_blank" rel="noopener noreferrer">
+          Escríbenos por WhatsApp <span aria-hidden="true">↗</span>
+        </a>
+        <span>© Bythephone. Hecho para estar conectados.</span>
+      </div>
+    </footer>
+
+    <script>
+      const storageKey = "bythephone-service-requests";
+      const statuses = [
+        { name: "Recibido", description: "Recibimos tu equipo y registramos la solicitud." },
+        { name: "En diagnóstico", description: "El equipo técnico está revisando la falla reportada." },
+        { name: "En reparación", description: "Se están realizando las labores de reparación del equipo." },
+        { name: "Listo", description: "El servicio técnico finalizó; el equipo está listo." }
+      ];
+      const ticketForm = document.querySelector("#ticketForm");
+      const ticketInput = document.querySelector("#ticketInput");
+      const trackingResult = document.querySelector("#trackingResult");
+      const lookupMessage = document.querySelector("#lookupMessage");
+      const adminForm = document.querySelector("#adminForm");
+      const adminMessage = document.querySelector("#adminMessage");
+      let activeTicket = "";
+      let refreshTimer;
+
+      function escapeHtml(value) {
+        return String(value).replace(/[&<>"']/g, (character) => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        })[character]);
+      }
+
+      function parseRequests() {
+        const storedRequests = JSON.parse(localStorage.getItem(storageKey) || "[]");
+        if (!Array.isArray(storedRequests)) throw new Error("El registro de solicitudes no tiene un formato válido.");
+        return storedRequests;
+      }
+
+      function showLookupMessage(message, isError = false) {
+        lookupMessage.textContent = message;
+        lookupMessage.classList.toggle("is-error", isError);
+        lookupMessage.hidden = false;
+      }
+
+      function showAdminMessage(message, isError = false) {
+        adminMessage.textContent = message;
+        adminMessage.classList.toggle("is-error", isError);
+        adminMessage.hidden = false;
+      }
+
+      function getStatusHistory(request) {
+        if (Array.isArray(request.statusHistory) && request.statusHistory.length > 0) {
+          return request.statusHistory.filter((entry) =>
+            entry &&
+            statuses.some((status) => status.name === entry.status) &&
+            Number.isFinite(Date.parse(entry.updatedAt))
+          );
+        }
+        return [{
+          status: statuses.some((status) => status.name === request.status) ? request.status : "Recibido",
+          updatedAt: request.createdAt
+        }];
+      }
+
+      function renderTimeline(request) {
+        const history = getStatusHistory(request);
+        const currentStatus = statuses.some((status) => status.name === request.status)
+          ? request.status
+          : history[history.length - 1].status;
+        const currentIndex = statuses.findIndex((status) => status.name === currentStatus);
+        const latestUpdate = [...history].reverse().find((entry) => entry.status === currentStatus) || history[history.length - 1];
+        document.querySelector("#currentStatus").textContent = currentStatus;
+        document.querySelector("#statusUpdated").textContent =
+          `Última actualización: ${new Intl.DateTimeFormat("es-CO", { dateStyle: "long", timeStyle: "short" }).format(new Date(latestUpdate.updatedAt))}`;
+        document.querySelector("#timeline").innerHTML = statuses.map((status, index) => {
+          const events = history.filter((entry) => entry.status === status.name);
+          const phase = index < currentIndex ? "is-complete" : index === currentIndex ? "is-current" : "";
+          const eventDates = events.map((entry) => `
+            <time datetime="${escapeHtml(new Date(entry.updatedAt).toISOString())}">
+              ${new Intl.DateTimeFormat("es-CO", { dateStyle: "medium", timeStyle: "short" }).format(new Date(entry.updatedAt))}
+            </time>
+          `).join("");
+          return `
+            <li class="timeline-item ${phase}">
+              <span class="timeline-marker" aria-hidden="true">${index < currentIndex ? "✓" : index + 1}</span>
+              <div class="timeline-copy">
+                <div class="timeline-title-row">
+                  <strong>${status.name}</strong>
+                  ${index === currentIndex ? '<span class="current-badge">Actual</span>' : ""}
+                </div>
+                <p>${status.description}</p>
+                ${eventDates ? `<div class="timeline-dates">${eventDates}</div>` : ""}
+              </div>
+            </li>
+          `;
+        }).join("");
+        document.querySelector("#adminStatus").value = currentStatus;
+      }
+
+      function renderRequest(request) {
+        const department = request.department === "other"
+          ? "Otro departamento de Colombia"
+          : request.department;
+        const pickup = request.pickupDate
+          ? `${request.pickupDate} · ${request.pickupTime || "Horario por confirmar"}`
+          : "No informado";
+        document.querySelector("#resultTicket").textContent = request.ticket;
+        document.querySelector("#requestData").innerHTML = `
+          <div><dt>Equipo</dt><dd>${escapeHtml(request.equipment || "No informado")}</dd></div>
+          <div><dt>Tipo de solicitud</dt><dd>${escapeHtml(request.requestType || "Servicio técnico")}</dd></div>
+          <div><dt>Falla reportada</dt><dd>${escapeHtml(request.failureDescription || "No informada")}</dd></div>
+          <div><dt>Recogida preferida</dt><dd>${escapeHtml(pickup)}</dd></div>
+          <div><dt>Dirección</dt><dd>${escapeHtml([request.streetAddress, request.city, department].filter(Boolean).join(", ") || "No informada")}</dd></div>
+        `;
+        renderTimeline(request);
+        trackingResult.hidden = false;
+        lookupMessage.hidden = true;
+      }
+
+      function findRequest(ticket) {
+        return parseRequests().find((request) =>
+          request &&
+          typeof request.ticket === "string" &&
+          request.ticket.toUpperCase() === ticket
+        );
+      }
+
+      function lookupTicket(ticket) {
+        const normalizedTicket = ticket.trim().toUpperCase();
+        if (!normalizedTicket) {
+          trackingResult.hidden = true;
+          showLookupMessage("Ingresa el código único de tu ticket para consultar el estado.", true);
+          return false;
+        }
+        try {
+          const request = findRequest(normalizedTicket);
+          if (!request) {
+            activeTicket = normalizedTicket;
+            trackingResult.hidden = true;
+            showLookupMessage("No encontramos ese ticket en este navegador. Revisa el código o consulta desde el dispositivo donde radicaste la solicitud.", true);
+            return false;
+          }
+
+          activeTicket = normalizedTicket;
+          ticketInput.value = request.ticket;
+          renderRequest(request);
+          return true;
+        } catch (error) {
+          trackingResult.hidden = true;
+          showLookupMessage(`No fue posible consultar el ticket: ${error.message}`, true);
+          return false;
+        }
+      }
+
+      ticketForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const ticket = ticketInput.value.trim().toUpperCase();
+        if (!lookupTicket(ticket)) return;
+        const url = new URL(window.location.href);
+        url.searchParams.set("ticket", ticket);
+        window.history.replaceState(null, "", url);
+      });
+
+      adminForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!activeTicket) {
+          showAdminMessage("Consulta un ticket antes de actualizar su estado.", true);
+          return;
+        }
+        const nextStatus = document.querySelector("#adminStatus").value;
+        if (!statuses.some((status) => status.name === nextStatus)) {
+          showAdminMessage("Selecciona un estado válido.", true);
+          return;
+        }
+        try {
+          const requests = parseRequests();
+          const requestIndex = requests.findIndex((request) => request.ticket.toUpperCase() === activeTicket);
+          if (requestIndex === -1) {
+            showAdminMessage("El ticket ya no está disponible en este navegador.", true);
+            return;
+          }
+
+          const request = requests[requestIndex];
+          const history = getStatusHistory(request);
+          if (request.status !== nextStatus) {
+            history.push({ status: nextStatus, updatedAt: new Date().toISOString() });
+          }
+          requests[requestIndex] = { ...request, status: nextStatus, statusHistory: history };
+          localStorage.setItem(storageKey, JSON.stringify(requests));
+          renderRequest(requests[requestIndex]);
+          showAdminMessage(`Estado actualizado a «${nextStatus}».`, false);
+        } catch (error) {
+          showAdminMessage(`No fue posible guardar la actualización: ${error.message}`, true);
+        }
+      });
+
+      window.addEventListener("storage", (event) => {
+        if (event.key === storageKey && activeTicket) lookupTicket(activeTicket);
+      });
+
+      refreshTimer = window.setInterval(() => {
+        if (!activeTicket || document.hidden) return;
+        try {
+          const request = findRequest(activeTicket);
+          if (request) renderRequest(request);
+        } catch (error) {
+          showLookupMessage(`No fue posible actualizar el seguimiento: ${error.message}`, true);
+        }
+      }, 2000);
+
+      window.addEventListener("pagehide", () => window.clearInterval(refreshTimer), { once: true });
+
+      const queryTicket = new URLSearchParams(window.location.search).get("ticket");
+      if (queryTicket) {
+        ticketInput.value = queryTicket;
+        lookupTicket(queryTicket);
+      }
+    </script>
+  </body>
+</html>
