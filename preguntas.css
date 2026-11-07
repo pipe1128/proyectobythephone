@@ -181,6 +181,28 @@ input:focus-visible {
   padding-block: 35px 78px;
 }
 
+.faq-demo-note {
+  max-width: 730px;
+  margin: 0 auto 26px;
+  padding: 14px 17px;
+  border: 1px solid #dfe5fb;
+  border-radius: 9px;
+  background: #edf1ff;
+  color: #34446f;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.faq-demo-note strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #263d9b;
+}
+
+.faq-demo-note p {
+  margin: 0;
+}
+
 .faq-search {
   max-width: 730px;
   margin: 0 auto 34px;
