@@ -9,14 +9,14 @@ contactWidget.innerHTML = `
       </div>
       <button class="contact-close" type="button" aria-label="Cerrar opciones de contacto">×</button>
     </div>
-    <a class="contact-option" href="https://wa.me/573015379982" target="_blank" rel="noopener noreferrer">
+    <a class="contact-option" href="https://wa.me/573018951862" target="_blank" rel="noopener noreferrer">
       <span class="contact-option-icon whatsapp-icon" aria-hidden="true">W</span>
       <span><strong>Chat de WhatsApp</strong><small>Escríbenos directamente</small></span>
       <span class="contact-arrow" aria-hidden="true">↗</span>
     </a>
-    <a class="contact-option" href="tel:+573015379982">
+    <a class="contact-option" href="tel:+573018951862">
       <span class="contact-option-icon phone-icon" aria-hidden="true">☎</span>
-      <span><strong>Atención telefónica</strong><small>+57 301 537 9982</small></span>
+      <span><strong>Atención telefónica</strong><small>+57 301 895 1862</small></span>
       <span class="contact-arrow" aria-hidden="true">↗</span>
     </a>
     <a class="contact-option" href="preguntas.html">

@@ -355,7 +355,7 @@ public class BythephoneApp {
                     System.out.println("No encontramos coincidencias. Prueba otra palabra.");
                 }
                 System.out.println();
-                System.out.println("Atención: WhatsApp +57 301 537 9982.");
+                System.out.println("Atención: WhatsApp +57 301 895 1862.");
             } else if ("5".equals(optionText)) {
                 System.out.println();
                 System.out.println("GARANTÍA Y SERVICIO TÉCNICO · radicación de demostración");
@@ -638,8 +638,8 @@ public class BythephoneApp {
                 System.out.println("INICIO DE SESIÓN Y ATENCIÓN");
                 System.out.println("El inicio de sesión no está conectado a un sistema de usuarios.");
                 System.out.println("No ingreses una contraseña real; no se guardan credenciales.");
-                System.out.println("Atención telefónica: +57 301 537 9982");
-                System.out.println("WhatsApp: https://wa.me/573015379982");
+                System.out.println("Atención telefónica: +57 301 895 1862");
+                System.out.println("WhatsApp: https://wa.me/573018951862");
                 System.out.println("Consulta las preguntas frecuentes desde la opción 4.");
             } else {
                 System.out.println("Opción inválida. Selecciona un número del menú.");
