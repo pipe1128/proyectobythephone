@@ -45,6 +45,56 @@ public class BythephoneApp {
             "Android · 8 GB RAM · 256 GB · 5G",
             "iOS · 6 GB RAM · 128 GB · 5G"
         };
+        String[] operatingSystems = {
+            "Android", "iOS", "Android", "Android", "Android", "Android", "Android", "iOS"
+        };
+        int[] ram = {8, 4, 8, 8, 8, 8, 8, 6};
+        int[] storage = {256, 128, 256, 256, 128, 256, 256, 128};
+        boolean[] fiveG = {true, true, true, true, true, false, true, true};
+        String[] screens = {
+            "6.6 pulgadas Super AMOLED, 120 Hz",
+            "6.1 pulgadas Super Retina XDR OLED",
+            "6.67 pulgadas AMOLED, 120 Hz",
+            "6.7 pulgadas pOLED, 144 Hz",
+            "6.6 pulgadas Super AMOLED, 120 Hz",
+            "6.67 pulgadas AMOLED, 120 Hz",
+            "6.5 pulgadas pOLED, 120 Hz",
+            "6.1 pulgadas Super Retina XDR OLED"
+        };
+        String[] cameras = {
+            "Principal 50 MP con estabilización óptica",
+            "Sistema dual de 12 MP con modo Noche",
+            "Principal de 200 MP con estabilización óptica",
+            "Principal de 50 MP con sensor Sony LYTIA",
+            "Principal de 50 MP con estabilización óptica",
+            "Principal de 108 MP",
+            "Principal de 50 MP con estabilización óptica",
+            "Principal de 48 MP con teleobjetivo 2x"
+        };
+        String[] batteries = {
+            "5.000 mAh, carga rápida de 25 W",
+            "Reproducción de video hasta 19 horas",
+            "5.100 mAh, carga turbo de 67 W",
+            "5.000 mAh, TurboPower de 68 W",
+            "5.000 mAh, carga rápida de 25 W",
+            "5.000 mAh, carga rápida de 33 W",
+            "5.000 mAh, TurboPower de 30 W",
+            "Reproducción de video hasta 20 horas"
+        };
+        String[] processors = {
+            "Exynos 1480", "Chip A15 Bionic", "Snapdragon 7s Gen 2", "Snapdragon 7s Gen 2",
+            "Exynos 1380", "MediaTek Helio G99-Ultra", "Snapdragon 695 5G", "Chip A16 Bionic"
+        };
+        String[] descriptions = {
+            "Pantalla fluida, cámara versátil y conectividad 5G.",
+            "Diseño resistente, gran cámara y rendimiento A15.",
+            "Alta resolución y carga rápida para todos los días.",
+            "Pantalla envolvente y cámara con estabilización óptica.",
+            "Una experiencia equilibrada con pantalla amplia.",
+            "Pantalla AMOLED y amplio almacenamiento.",
+            "Diseño ligero con conectividad 5G y pantalla pOLED.",
+            "Cámara avanzada de 48 MP y conexión USB-C."
+        };
         String[] providers = {"Agaval", "Addi", "Sistecrédito", "Banco de Bogotá"};
         double[] rates = {0.05, 0.10, 0.10, 0.03};
         String[] statuses = {"Recibido", "En diagnóstico", "En reparación", "Listo"};
@@ -125,28 +175,8 @@ public class BythephoneApp {
             if ("0".equals(optionText)) {
                 running = false;
             } else if ("1".equals(optionText)) {
-                System.out.println();
-                System.out.println("INICIO · TECNOLOGÍA QUE TE CONECTA");
-                System.out.println("Bienvenido a Bythephone. Explora el catálogo o filtra por marca.");
-                System.out.println("Marcas disponibles: Samsung, Apple, Xiaomi y Motorola.");
-                String brandFilter = readOptional.apply("Marca para filtrar (Enter para ver todas): ");
-                System.out.println();
-                System.out.println("CATÁLOGO DE EQUIPOS");
-                int shown = 0;
-                for (int i = 0; i < names.length; i++) {
-                    if (!brandFilter.isEmpty()
-                            && !brands[i].toLowerCase(Locale.ROOT).contains(brandFilter.toLowerCase(Locale.ROOT))) {
-                        continue;
-                    }
-                    System.out.printf(
-                            "%d. %s %s — %s%n   %s%n",
-                            i + 1, brands[i], names[i], money.apply(prices[i]), specs[i]);
-                    shown++;
-                }
-                if (shown == 0) {
-                    System.out.println("No hay equipos de esa marca en el catálogo de demostración.");
-                }
-                System.out.println("Precios y existencias sujetos a confirmación.");
+                catalogMenu(input, brands, names, prices, specs, operatingSystems, ram, storage,
+                        fiveG, screens, cameras, batteries, processors, descriptions, cop);
             } else if ("2".equals(optionText)) {
                 System.out.println();
                 System.out.println("COTIZACIONES · vigencia de 7 días");
@@ -636,8 +666,27 @@ public class BythephoneApp {
             } else if ("9".equals(optionText)) {
                 System.out.println();
                 System.out.println("INICIO DE SESIÓN Y ATENCIÓN");
-                System.out.println("El inicio de sesión no está conectado a un sistema de usuarios.");
-                System.out.println("No ingreses una contraseña real; no se guardan credenciales.");
+                System.out.println("Ingreso de demostración: no uses una contraseña real.");
+                String loginEmail;
+                while (true) {
+                    loginEmail = readRequired.apply("Correo electrónico: ");
+                    if (loginEmail.matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$")) {
+                        break;
+                    }
+                    System.out.println("Ingresa un correo válido.");
+                }
+                char[] password = readDemoPassword(input);
+                while (!hasLettersAndNumbers(password)) {
+                    System.out.println("La contraseña debe incluir al menos una letra y un número.");
+                    password = readDemoPassword(input);
+                }
+                if (password.length == 0) {
+                    System.out.println("La contraseña de prueba no puede estar vacía.");
+                } else {
+                    System.out.println("Datos recibidos para la simulación de " + loginEmail + ".");
+                    System.out.println("No hay autenticación real; la contraseña no se muestra ni se guarda.");
+                }
+                java.util.Arrays.fill(password, '\0');
                 System.out.println("Atención telefónica: +57 301 895 1862");
                 System.out.println("WhatsApp: https://wa.me/573018951862");
                 System.out.println("Consulta las preguntas frecuentes desde la opción 4.");
@@ -649,5 +698,246 @@ public class BythephoneApp {
         System.out.println("La simulación terminó. Las cotizaciones, créditos, solicitudes y pedidos "
                 + "temporales fueron descartados.");
         input.close();
+    }
+
+    private static char[] readDemoPassword(Scanner input) {
+        java.io.Console console = System.console();
+        if (console != null) {
+            char[] password = console.readPassword("Contraseña de prueba: ");
+            return password == null ? new char[0] : password;
+        }
+        System.out.print("Contraseña de prueba: ");
+        return input.nextLine().toCharArray();
+    }
+
+    private static boolean hasLettersAndNumbers(char[] password) {
+        if (password == null || password.length == 0) {
+            return false;
+        }
+        boolean hasLetter = false;
+        boolean hasDigit = false;
+        for (char ch : password) {
+            if (Character.isLetter(ch)) {
+                hasLetter = true;
+            } else if (Character.isDigit(ch)) {
+                hasDigit = true;
+            }
+        }
+        return hasLetter && hasDigit;
+    }
+
+    private static void catalogMenu(
+            Scanner input,
+            String[] brands,
+            String[] names,
+            long[] prices,
+            String[] specs,
+            String[] operatingSystems,
+            int[] ram,
+            int[] storage,
+            boolean[] fiveG,
+            String[] screens,
+            String[] cameras,
+            String[] batteries,
+            String[] processors,
+            String[] descriptions,
+            NumberFormat cop) {
+        List<Integer> interest = new ArrayList<>();
+        System.out.println();
+        System.out.println("INICIO · TECNOLOGÍA QUE TE CONECTA");
+        System.out.println("Bienvenido a Bythephone. Estos equipos y precios son de demostración.");
+        printCatalogProducts(allProductIndexes(names.length), brands, names, prices, specs, interest, cop);
+
+        boolean browsing = true;
+        while (browsing) {
+            System.out.println();
+            System.out.println("------------ OPCIONES DEL CATÁLOGO ------------");
+            System.out.println("1. Ver todos los equipos");
+            System.out.println("2. Filtrar y ordenar equipos");
+            System.out.println("3. Ver ficha técnica");
+            System.out.println("4. Agregar o quitar de la lista de interés");
+            System.out.println("5. Ver lista de interés");
+            System.out.println("6. Vaciar lista de interés");
+            System.out.println("0. Volver al menú principal");
+            System.out.print("Selecciona una opción: ");
+            String option = input.nextLine().trim();
+
+            if ("0".equals(option)) {
+                browsing = false;
+            } else if ("1".equals(option)) {
+                printCatalogProducts(allProductIndexes(names.length), brands, names, prices, specs, interest, cop);
+            } else if ("2".equals(option)) {
+                String brandFilter = readCatalogText(input, "Marca (Enter para todas): ").toLowerCase(Locale.ROOT);
+                String osFilter = readCatalogText(input, "Sistema operativo Android/iOS (Enter para cualquiera): ");
+                Long minPrice = readOptionalPrice(input, "Precio mínimo en COP (Enter para omitir): ");
+                Long maxPrice = readOptionalPrice(input, "Precio máximo en COP (Enter para omitir): ");
+                if (minPrice != null && maxPrice != null && minPrice > maxPrice) {
+                    System.out.println("El precio mínimo no puede superar el precio máximo.");
+                    continue;
+                }
+                int minRam = new int[] {0, 4, 6, 8, 12}[
+                    readCatalogChoice(input, "RAM mínima: 0. Cualquiera  1. 4 GB  2. 6 GB  3. 8 GB  4. 12 GB", 0, 4)];
+                int minStorage = new int[] {0, 128, 256, 512}[
+                    readCatalogChoice(input, "Almacenamiento mínimo: 0. Cualquiera  1. 128 GB  2. 256 GB  3. 512 GB", 0, 3)];
+                boolean requireFiveG = readCatalogChoice(input, "5G: 0. Cualquiera  1. Solo equipos 5G", 0, 1) == 1;
+                int sortChoice = readCatalogChoice(
+                        input, "Ordenar: 0. Recomendados  1. Menor precio  2. Mayor precio  3. Nombre", 0, 3);
+
+                List<Integer> matches = new ArrayList<>();
+                for (int i = 0; i < names.length; i++) {
+                    boolean matchesBrand = brandFilter.isEmpty()
+                            || brands[i].toLowerCase(Locale.ROOT).contains(brandFilter);
+                    boolean matchesOs = osFilter.isEmpty()
+                            || operatingSystems[i].equalsIgnoreCase(osFilter);
+                    boolean matchesMinPrice = minPrice == null || prices[i] >= minPrice;
+                    boolean matchesMaxPrice = maxPrice == null || prices[i] <= maxPrice;
+                    if (matchesBrand && matchesOs && matchesMinPrice && matchesMaxPrice
+                            && ram[i] >= minRam && storage[i] >= minStorage
+                            && (!requireFiveG || fiveG[i])) {
+                        matches.add(i);
+                    }
+                }
+
+                if (sortChoice == 1) {
+                    matches.sort((left, right) -> Long.compare(prices[left], prices[right]));
+                } else if (sortChoice == 2) {
+                    matches.sort((left, right) -> Long.compare(prices[right], prices[left]));
+                } else if (sortChoice == 3) {
+                    matches.sort((left, right) -> names[left].compareToIgnoreCase(names[right]));
+                }
+                printCatalogProducts(matches, brands, names, prices, specs, interest, cop);
+            } else if ("3".equals(option)) {
+                printCatalogProducts(allProductIndexes(names.length), brands, names, prices, specs, interest, cop);
+                int productIndex = readCatalogChoice(input, "Número del equipo para ver su ficha", 1, names.length) - 1;
+                printProductDetails(productIndex, brands, names, prices, specs, operatingSystems,
+                        ram, storage, fiveG, screens, cameras, batteries, processors, descriptions, cop);
+            } else if ("4".equals(option)) {
+                printCatalogProducts(allProductIndexes(names.length), brands, names, prices, specs, interest, cop);
+                int productIndex = readCatalogChoice(input, "Número del equipo para cambiar su lista de interés", 1, names.length) - 1;
+                if (interest.contains(productIndex)) {
+                    interest.remove(Integer.valueOf(productIndex));
+                    System.out.println(names[productIndex] + " se quitó de tu lista de interés.");
+                } else {
+                    interest.add(productIndex);
+                    System.out.println(names[productIndex] + " se agregó a tu lista de interés.");
+                }
+                System.out.println("Equipos en la lista: " + interest.size());
+            } else if ("5".equals(option)) {
+                if (interest.isEmpty()) {
+                    System.out.println("Tu lista de interés está vacía. Agrega equipos desde la opción 4.");
+                } else {
+                    printCatalogProducts(interest, brands, names, prices, specs, interest, cop);
+                    System.out.println("Puedes usar la opción 2 de Cotizaciones en el menú principal para crear una cotización.");
+                }
+            } else if ("6".equals(option)) {
+                interest.clear();
+                System.out.println("La lista de interés quedó vacía.");
+            } else {
+                System.out.println("Opción inválida. Selecciona un número del menú del catálogo.");
+            }
+        }
+        System.out.println("La lista de interés es temporal y se descarta al cerrar la aplicación.");
+    }
+
+    private static List<Integer> allProductIndexes(int productCount) {
+        List<Integer> indexes = new ArrayList<>();
+        for (int i = 0; i < productCount; i++) {
+            indexes.add(i);
+        }
+        return indexes;
+    }
+
+    private static void printCatalogProducts(
+            List<Integer> indexes,
+            String[] brands,
+            String[] names,
+            long[] prices,
+            String[] specs,
+            List<Integer> interest,
+            NumberFormat cop) {
+        System.out.println();
+        System.out.println("CATÁLOGO DE EQUIPOS · " + indexes.size()
+                + (indexes.size() == 1 ? " equipo" : " equipos"));
+        if (indexes.isEmpty()) {
+            System.out.println("No encontramos coincidencias. Prueba cambiando los filtros.");
+            return;
+        }
+        for (int index : indexes) {
+            String interestMark = interest.contains(index) ? " [EN TU LISTA DE INTERÉS]" : "";
+            System.out.printf("%d. %s %s — %s%s%n   %s%n",
+                    index + 1, brands[index], names[index], cop.format(prices[index]), interestMark, specs[index]);
+        }
+        System.out.println("Precios y existencias sujetos a confirmación.");
+    }
+
+    private static void printProductDetails(
+            int index,
+            String[] brands,
+            String[] names,
+            long[] prices,
+            String[] specs,
+            String[] operatingSystems,
+            int[] ram,
+            int[] storage,
+            boolean[] fiveG,
+            String[] screens,
+            String[] cameras,
+            String[] batteries,
+            String[] processors,
+            String[] descriptions,
+            NumberFormat cop) {
+        System.out.println();
+        System.out.println("FICHA TÉCNICA · " + brands[index] + " " + names[index]);
+        System.out.println("Precio de referencia: " + cop.format(prices[index]));
+        System.out.println("Resumen: " + descriptions[index]);
+        System.out.println("Pantalla: " + screens[index]);
+        System.out.println("Procesador: " + processors[index]);
+        System.out.println("Cámara: " + cameras[index]);
+        System.out.println("Batería: " + batteries[index]);
+        System.out.println("Sistema operativo: " + operatingSystems[index]);
+        System.out.println("Memoria RAM: " + ram[index] + " GB");
+        System.out.println("Almacenamiento: " + storage[index] + " GB");
+        System.out.println("Conectividad: " + (fiveG[index] ? "5G" : "4G LTE"));
+        System.out.println("Disponibilidad por confirmar. " + specs[index]);
+    }
+
+    private static String readCatalogText(Scanner input, String prompt) {
+        System.out.print(prompt);
+        return input.nextLine().trim();
+    }
+
+    private static int readCatalogChoice(Scanner input, String prompt, int minimum, int maximum) {
+        while (true) {
+            System.out.println(prompt);
+            System.out.print("Selecciona una opción (" + minimum + "-" + maximum + "): ");
+            try {
+                int value = Integer.parseInt(input.nextLine().trim());
+                if (value >= minimum && value <= maximum) {
+                    return value;
+                }
+            } catch (NumberFormatException exception) {
+                // Se vuelve a solicitar el dato para mantener la navegación activa.
+            }
+            System.out.println("Opción inválida.");
+        }
+    }
+
+    private static Long readOptionalPrice(Scanner input, String prompt) {
+        while (true) {
+            System.out.print(prompt);
+            String value = input.nextLine().trim();
+            if (value.isEmpty()) {
+                return null;
+            }
+            try {
+                long price = Long.parseLong(value.replace(".", "").replace(",", "").replace(" ", ""));
+                if (price >= 0) {
+                    return price;
+                }
+            } catch (NumberFormatException exception) {
+                // El valor se solicita de nuevo si no se puede interpretar como COP.
+            }
+            System.out.println("Ingresa un precio válido en COP o deja el campo vacío.");
+        }
     }
 }
