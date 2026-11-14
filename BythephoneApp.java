@@ -1,4 +1,4 @@
-import java.text.NumberFormat;
+﻿import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -18,114 +18,28 @@ public class BythephoneApp {
         Locale locale = Locale.forLanguageTag("es-CO");
         NumberFormat cop = NumberFormat.getCurrencyInstance(locale);
         cop.setMaximumFractionDigits(0);
-        DateTimeFormatter dateFormat =
-                DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(locale);
-        DateTimeFormatter dateTimeFormat =
-                DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(locale);
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).withLocale(locale);
+        DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM).withLocale(locale);
 
-        String[] brands = {
-            "Samsung", "Apple", "Xiaomi", "Motorola",
-            "Samsung", "Xiaomi", "Motorola", "Apple"
-        };
-        String[] names = {
-            "Galaxy A55 5G", "iPhone 13", "Redmi Note 13 Pro 5G", "Edge 50 Fusion",
-            "Galaxy A35 5G", "Redmi Note 13", "Moto G84 5G", "iPhone 15"
-        };
-        long[] prices = {
-            1_899_900, 2_399_900, 1_499_900, 1_399_900,
-            1_199_900, 799_900, 899_900, 3_599_900
-        };
-        String[] specs = {
-            "Android · 8 GB RAM · 256 GB · 5G",
-            "iOS · 4 GB RAM · 128 GB · 5G",
-            "Android · 8 GB RAM · 256 GB · 5G",
-            "Android · 8 GB RAM · 256 GB · 5G",
-            "Android · 8 GB RAM · 128 GB · 5G",
-            "Android · 8 GB RAM · 256 GB",
-            "Android · 8 GB RAM · 256 GB · 5G",
-            "iOS · 6 GB RAM · 128 GB · 5G"
-        };
-        String[] operatingSystems = {
-            "Android", "iOS", "Android", "Android", "Android", "Android", "Android", "iOS"
-        };
+        String[] brands = {"Samsung", "Apple", "Xiaomi", "Motorola", "Samsung", "Xiaomi", "Motorola", "Apple"};
+        String[] names = {"Galaxy A55 5G", "iPhone 13", "Redmi Note 13 Pro 5G", "Edge 50 Fusion", "Galaxy A35 5G", "Redmi Note 13", "Moto G84 5G", "iPhone 15"};
+        long[] prices = {1_899_900, 2_399_900, 1_499_900, 1_399_900, 1_199_900, 799_900, 899_900, 3_599_900};
+        String[] specs = {"Android · 8 GB RAM · 256 GB · 5G", "iOS · 4 GB RAM · 128 GB · 5G", "Android · 8 GB RAM · 256 GB · 5G", "Android · 8 GB RAM · 256 GB · 5G", "Android · 8 GB RAM · 128 GB · 5G", "Android · 8 GB RAM · 256 GB", "Android · 8 GB RAM · 256 GB · 5G", "iOS · 6 GB RAM · 128 GB · 5G"};
+        String[] operatingSystems = {"Android", "iOS", "Android", "Android", "Android", "Android", "Android", "iOS"};
         int[] ram = {8, 4, 8, 8, 8, 8, 8, 6};
         int[] storage = {256, 128, 256, 256, 128, 256, 256, 128};
         boolean[] fiveG = {true, true, true, true, true, false, true, true};
-        String[] screens = {
-            "6.6 pulgadas Super AMOLED, 120 Hz",
-            "6.1 pulgadas Super Retina XDR OLED",
-            "6.67 pulgadas AMOLED, 120 Hz",
-            "6.7 pulgadas pOLED, 144 Hz",
-            "6.6 pulgadas Super AMOLED, 120 Hz",
-            "6.67 pulgadas AMOLED, 120 Hz",
-            "6.5 pulgadas pOLED, 120 Hz",
-            "6.1 pulgadas Super Retina XDR OLED"
-        };
-        String[] cameras = {
-            "Principal 50 MP con estabilización óptica",
-            "Sistema dual de 12 MP con modo Noche",
-            "Principal de 200 MP con estabilización óptica",
-            "Principal de 50 MP con sensor Sony LYTIA",
-            "Principal de 50 MP con estabilización óptica",
-            "Principal de 108 MP",
-            "Principal de 50 MP con estabilización óptica",
-            "Principal de 48 MP con teleobjetivo 2x"
-        };
-        String[] batteries = {
-            "5.000 mAh, carga rápida de 25 W",
-            "Reproducción de video hasta 19 horas",
-            "5.100 mAh, carga turbo de 67 W",
-            "5.000 mAh, TurboPower de 68 W",
-            "5.000 mAh, carga rápida de 25 W",
-            "5.000 mAh, carga rápida de 33 W",
-            "5.000 mAh, TurboPower de 30 W",
-            "Reproducción de video hasta 20 horas"
-        };
-        String[] processors = {
-            "Exynos 1480", "Chip A15 Bionic", "Snapdragon 7s Gen 2", "Snapdragon 7s Gen 2",
-            "Exynos 1380", "MediaTek Helio G99-Ultra", "Snapdragon 695 5G", "Chip A16 Bionic"
-        };
-        String[] descriptions = {
-            "Pantalla fluida, cámara versátil y conectividad 5G.",
-            "Diseño resistente, gran cámara y rendimiento A15.",
-            "Alta resolución y carga rápida para todos los días.",
-            "Pantalla envolvente y cámara con estabilización óptica.",
-            "Una experiencia equilibrada con pantalla amplia.",
-            "Pantalla AMOLED y amplio almacenamiento.",
-            "Diseño ligero con conectividad 5G y pantalla pOLED.",
-            "Cámara avanzada de 48 MP y conexión USB-C."
-        };
+        String[] screens = {"6.6 pulgadas Super AMOLED, 120 Hz", "6.1 pulgadas Super Retina XDR OLED", "6.67 pulgadas AMOLED, 120 Hz", "6.7 pulgadas pOLED, 144 Hz", "6.6 pulgadas Super AMOLED, 120 Hz", "6.67 pulgadas AMOLED, 120 Hz", "6.5 pulgadas pOLED, 120 Hz", "6.1 pulgadas Super Retina XDR OLED"};
+        String[] cameras = {"Principal 50 MP con estabilización óptica", "Sistema dual de 12 MP con modo Noche", "Principal de 200 MP con estabilización óptica", "Principal de 50 MP con sensor Sony LYTIA", "Principal de 50 MP con estabilización óptica", "Principal de 108 MP", "Principal de 50 MP con estabilización óptica", "Principal de 48 MP con teleobjetivo 2x"};
+        String[] batteries = {"5.000 mAh, carga rápida de 25 W", "Reproducción de video hasta 19 horas", "5.100 mAh, carga turbo de 67 W", "5.000 mAh, TurboPower de 68 W", "5.000 mAh, carga rápida de 25 W", "5.000 mAh, carga rápida de 33 W", "5.000 mAh, TurboPower de 30 W", "Reproducción de video hasta 20 horas"};
+        String[] processors = {"Exynos 1480", "Chip A15 Bionic", "Snapdragon 7s Gen 2", "Snapdragon 7s Gen 2", "Exynos 1380", "MediaTek Helio G99-Ultra", "Snapdragon 695 5G", "Chip A16 Bionic"};
+        String[] descriptions = {"Pantalla fluida, cámara versátil y conectividad 5G.", "Diseño resistente, gran cámara y rendimiento A15.", "Alta resolución y carga rápida para todos los días.", "Pantalla envolvente y cámara con estabilización óptica.", "Una experiencia equilibrada con pantalla amplia.", "Pantalla AMOLED y amplio almacenamiento.", "Diseño ligero con conectividad 5G y pantalla pOLED.", "Cámara avanzada de 48 MP y conexión USB-C."};
         String[] providers = {"Agaval", "Addi", "Sistecrédito", "Banco de Bogotá"};
         double[] rates = {0.05, 0.10, 0.10, 0.03};
         String[] statuses = {"Recibido", "En diagnóstico", "En reparación", "Listo"};
-        String[] statusDescriptions = {
-            "Recibimos tu equipo y registramos la solicitud.",
-            "El equipo técnico está revisando la falla reportada.",
-            "Se están realizando las labores de reparación del equipo.",
-            "El servicio técnico finalizó; el equipo está listo."
-        };
-        String[] faqQuestions = {
-            "¿Qué cubre la garantía?",
-            "¿Cómo radico un servicio técnico?",
-            "¿Cómo consulto el estado de mi solicitud?",
-            "¿La fecha de recogida queda confirmada?",
-            "¿Qué métodos de pago se aceptan?",
-            "¿El simulador aprueba mi crédito?",
-            "¿Los precios de la cotización quedan reservados?",
-            "¿Cuánto tarda un envío?",
-            "¿Las tarifas de envío son definitivas?"
-        };
-        String[] faqAnswers = {
-            "La cobertura y vigencia dependen de las condiciones del fabricante y de la compra.",
-            "Completa los datos del equipo, describe la falla y elige una fecha preferida.",
-            "Ingresa el código único de ticket que recibiste al radicar.",
-            "No. La fecha es una preferencia y requiere confirmación del equipo de atención.",
-            "Confirma los métodos disponibles directamente con Bythephone.",
-            "No. El cálculo es informativo y no representa aprobación ni condiciones reales.",
-            "No. Los precios y la disponibilidad deben confirmarse después del vencimiento.",
-            "Depende del destino y la cobertura; los tiempos son estimados.",
-            "No. Las tarifas mostradas son de demostración y no están confirmadas por una transportadora."
-        };
+        String[] statusDescriptions = {"Recibimos tu equipo y registramos la solicitud.", "El equipo técnico está revisando la falla reportada.", "Se están realizando las labores de reparación del equipo.", "El servicio técnico finalizó; el equipo está listo."};
+        String[] faqQuestions = {"¿Qué cubre la garantía?", "¿Cómo radico un servicio técnico?", "¿Cómo consulto el estado de mi solicitud?", "¿La fecha de recogida queda confirmada?", "¿Qué métodos de pago se aceptan?", "¿El simulador aprueba mi crédito?", "¿Los precios de la cotización quedan reservados?", "¿Cuánto tarda un envío?", "¿Las tarifas de envío son definitivas?"};
+        String[] faqAnswers = {"La cobertura y vigencia dependen de las condiciones del fabricante y de la compra.", "Completa los datos del equipo, describe la falla y elige una fecha preferida.", "Ingresa el código único de ticket que recibiste al radicar.", "No. La fecha es una preferencia y requiere confirmación del equipo de atención.", "Confirma los métodos disponibles directamente con Bythephone.", "No. El cálculo es informativo y no representa aprobación ni condiciones reales.", "No. Los precios y la disponibilidad deben confirmarse después del vencimiento.", "Depende del destino y la cobertura; los tiempos son estimados.", "No. Las tarifas mostradas son de demostración y no están confirmadas por una transportadora."};
 
         List<Map<String, Object>> quotes = new ArrayList<>();
         List<Map<String, Object>> simulations = new ArrayList<>();
@@ -175,8 +89,158 @@ public class BythephoneApp {
             if ("0".equals(optionText)) {
                 running = false;
             } else if ("1".equals(optionText)) {
-                catalogMenu(input, brands, names, prices, specs, operatingSystems, ram, storage,
-                        fiveG, screens, cameras, batteries, processors, descriptions, cop);
+                List<Integer> interest = new ArrayList<>();
+                List<Integer> allIndexes = new ArrayList<>();
+                for (int i = 0; i < names.length; i++) {
+                    allIndexes.add(i);
+                }
+                System.out.println();
+                System.out.println("INICIO · TECNOLOGÍA QUE TE CONECTA");
+                System.out.println("Bienvenido a Bythephone. Estos equipos y precios son de demostración.");
+                boolean browsing = true;
+                while (browsing) {
+                    System.out.println();
+                    System.out.println("------------ OPCIONES DEL CATÁLOGO ------------");
+                    System.out.println("1. Ver todos los equipos");
+                    System.out.println("2. Filtrar y ordenar equipos");
+                    System.out.println("3. Ver ficha técnica");
+                    System.out.println("4. Agregar o quitar de la lista de interés");
+                    System.out.println("5. Ver lista de interés");
+                    System.out.println("6. Vaciar lista de interés");
+                    System.out.println("0. Volver al menú principal");
+                    System.out.print("Selecciona una opción: ");
+                    String option = input.nextLine().trim();
+
+                    if ("0".equals(option)) {
+                        browsing = false;
+                    } else if ("1".equals(option)) {
+                        System.out.println();
+                        System.out.println("CATÁLOGO DE EQUIPOS · " + allIndexes.size() + " equipos");
+                        for (int index : allIndexes) {
+                            String interestMark = interest.contains(index) ? " [EN TU LISTA DE INTERÉS]" : "";
+                            System.out.printf("%d. %s %s — %s%s%n   %s%n", index + 1, brands[index], names[index], cop.format(prices[index]), interestMark, specs[index]);
+                        }
+                        System.out.println("Precios y existencias sujetos a confirmación.");
+                    } else if ("2".equals(option)) {
+                        System.out.print("Marca (Enter para todas): ");
+                        String brandFilter = input.nextLine().trim().toLowerCase(Locale.ROOT);
+                        System.out.print("Sistema operativo Android/iOS (Enter para cualquiera): ");
+                        String osFilter = input.nextLine().trim();
+
+                        Long minPrice = null;
+                        System.out.print("Precio mínimo en COP (Enter para omitir): ");
+                        String minPriceText = input.nextLine().trim();
+                        if (!minPriceText.isEmpty()) {
+                            minPrice = Long.parseLong(minPriceText.replace(".", "").replace(",", "").replace(" ", ""));
+                        }
+                        Long maxPrice = null;
+                        System.out.print("Precio máximo en COP (Enter para omitir): ");
+                        String maxPriceText = input.nextLine().trim();
+                        if (!maxPriceText.isEmpty()) {
+                            maxPrice = Long.parseLong(maxPriceText.replace(".", "").replace(",", "").replace(" ", ""));
+                        }
+                        if (minPrice != null && maxPrice != null && minPrice > maxPrice) {
+                            System.out.println("El precio mínimo no puede superar el precio máximo.");
+                            continue;
+                        }
+
+                        int minRam = 0;
+                        System.out.println("RAM mínima: 0. Cualquiera  1. 4 GB  2. 6 GB  3. 8 GB  4. 12 GB");
+                        System.out.print("Selecciona una opción (0-4): ");
+                        int ramChoice = Integer.parseInt(input.nextLine().trim());
+                        int[] valuesRam = {0, 4, 6, 8, 12};
+                        minRam = valuesRam[ramChoice];
+
+                        int minStorage = 0;
+                        System.out.println("Almacenamiento mínimo: 0. Cualquiera  1. 128 GB  2. 256 GB  3. 512 GB");
+                        System.out.print("Selecciona una opción (0-3): ");
+                        int storageChoice = Integer.parseInt(input.nextLine().trim());
+                        int[] valuesStorage = {0, 128, 256, 512};
+                        minStorage = valuesStorage[storageChoice];
+
+                        boolean requireFiveG = false;
+                        System.out.println("5G: 0. Cualquiera  1. Solo equipos 5G");
+                        System.out.print("Selecciona una opción (0-1): ");
+                        requireFiveG = Integer.parseInt(input.nextLine().trim()) == 1;
+
+                        int sortChoice = 0;
+                        System.out.println("Ordenar: 0. Recomendados  1. Menor precio  2. Mayor precio  3. Nombre");
+                        System.out.print("Selecciona una opción (0-3): ");
+                        sortChoice = Integer.parseInt(input.nextLine().trim());
+
+                        List<Integer> matches = new ArrayList<>();
+                        for (int i = 0; i < names.length; i++) {
+                            boolean matchesBrand = brandFilter.isEmpty() || brands[i].toLowerCase(Locale.ROOT).contains(brandFilter);
+                            boolean matchesOs = osFilter.isEmpty() || operatingSystems[i].equalsIgnoreCase(osFilter);
+                            boolean matchesMinPrice = minPrice == null || prices[i] >= minPrice;
+                            boolean matchesMaxPrice = maxPrice == null || prices[i] <= maxPrice;
+                            if (matchesBrand && matchesOs && matchesMinPrice && matchesMaxPrice && ram[i] >= minRam && storage[i] >= minStorage && (!requireFiveG || fiveG[i])) {
+                                matches.add(i);
+                            }
+                        }
+                        if (sortChoice == 1) {
+                            matches.sort((left, right) -> Long.compare(prices[left], prices[right]));
+                        } else if (sortChoice == 2) {
+                            matches.sort((left, right) -> Long.compare(prices[right], prices[left]));
+                        } else if (sortChoice == 3) {
+                            matches.sort((left, right) -> names[left].compareToIgnoreCase(names[right]));
+                        }
+                        System.out.println();
+                        System.out.println("CATÁLOGO DE EQUIPOS · " + matches.size() + " equipos");
+                        for (int index : matches) {
+                            String interestMark = interest.contains(index) ? " [EN TU LISTA DE INTERÉS]" : "";
+                            System.out.printf("%d. %s %s — %s%s%n   %s%n", index + 1, brands[index], names[index], cop.format(prices[index]), interestMark, specs[index]);
+                        }
+                    } else if ("3".equals(option)) {
+                        System.out.println();
+                        System.out.println("CATÁLOGO DE EQUIPOS · " + allIndexes.size() + " equipos");
+                        for (int index : allIndexes) {
+                            String interestMark = interest.contains(index) ? " [EN TU LISTA DE INTERÉS]" : "";
+                            System.out.printf("%d. %s %s — %s%s%n   %s%n", index + 1, brands[index], names[index], cop.format(prices[index]), interestMark, specs[index]);
+                        }
+                        System.out.print("Número del equipo para ver su ficha: ");
+                        int productIndex = Integer.parseInt(input.nextLine().trim()) - 1;
+                        System.out.println();
+                        System.out.println("FICHA TÉCNICA · " + brands[productIndex] + " " + names[productIndex]);
+                        System.out.println("Precio de referencia: " + cop.format(prices[productIndex]));
+                        System.out.println("Resumen: " + descriptions[productIndex]);
+                        System.out.println("Pantalla: " + screens[productIndex]);
+                        System.out.println("Procesador: " + processors[productIndex]);
+                        System.out.println("Cámara: " + cameras[productIndex]);
+                        System.out.println("Batería: " + batteries[productIndex]);
+                        System.out.println("Sistema operativo: " + operatingSystems[productIndex]);
+                        System.out.println("Memoria RAM: " + ram[productIndex] + " GB");
+                        System.out.println("Almacenamiento: " + storage[productIndex] + " GB");
+                        System.out.println("Conectividad: " + (fiveG[productIndex] ? "5G" : "4G LTE"));
+                        System.out.println("Disponibilidad por confirmar. " + specs[productIndex]);
+                    } else if ("4".equals(option)) {
+                        System.out.print("Número del equipo para cambiar su lista de interés: ");
+                        int selected = Integer.parseInt(input.nextLine().trim()) - 1;
+                        if (interest.contains(selected)) {
+                            interest.remove(Integer.valueOf(selected));
+                            System.out.println(names[selected] + " se quitó de tu lista de interés.");
+                        } else {
+                            interest.add(selected);
+                            System.out.println(names[selected] + " se agregó a tu lista de interés.");
+                        }
+                    } else if ("5".equals(option)) {
+                        if (interest.isEmpty()) {
+                            System.out.println("Tu lista de interés está vacía. Agrega equipos desde la opción 4.");
+                        } else {
+                            System.out.println();
+                            System.out.println("CATÁLOGO DE EQUIPOS · " + interest.size() + " equipos");
+                            for (int index : interest) {
+                                System.out.printf("%d. %s %s — %s%n   %s%n", index + 1, brands[index], names[index], cop.format(prices[index]), specs[index]);
+                            }
+                        }
+                    } else if ("6".equals(option)) {
+                        interest.clear();
+                        System.out.println("La lista de interés quedó vacía.");
+                    } else {
+                        System.out.println("Opción inválida. Selecciona un número del menú del catálogo.");
+                    }
+                }
+                System.out.println("La lista de interés es temporal y se descarta al cerrar la aplicación.");
             } else if ("2".equals(optionText)) {
                 System.out.println();
                 System.out.println("COTIZACIONES · vigencia de 7 días");
@@ -228,8 +292,7 @@ public class BythephoneApp {
                     continue;
                 }
                 LocalDate generatedDate = LocalDate.now();
-                String quoteNumber = "BT-COT-"
-                        + UUID.randomUUID().toString().substring(0, 8).toUpperCase(Locale.ROOT);
+                String quoteNumber = "BT-COT-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase(Locale.ROOT);
                 long total = 0;
                 System.out.println();
                 System.out.println("COTIZACIÓN " + quoteNumber);
@@ -241,12 +304,7 @@ public class BythephoneApp {
                     int quantity = item.getValue();
                     long lineTotal = prices[index] * quantity;
                     total += lineTotal;
-                    System.out.printf(
-                            "%-38s %8d %18s %18s%n",
-                            brands[index] + " " + names[index],
-                            quantity,
-                            money.apply(prices[index]),
-                            money.apply(lineTotal));
+                    System.out.printf("%-38s %8d %18s %18s%n", brands[index] + " " + names[index], quantity, money.apply(prices[index]), money.apply(lineTotal));
                 }
                 Map<String, Object> quote = new LinkedHashMap<>();
                 quote.put("number", quoteNumber);
@@ -301,6 +359,7 @@ public class BythephoneApp {
                     System.out.println("Selecciona 1 o 2.");
                     continue;
                 }
+
                 System.out.print("Cuota inicial en COP (0 a " + money.apply(purchasePrice - 1) + "): ");
                 long downPayment;
                 try {
@@ -313,6 +372,7 @@ public class BythephoneApp {
                     System.out.println("La cuota inicial debe ser menor al valor de compra.");
                     continue;
                 }
+
                 System.out.print("Número de cuotas (3-36): ");
                 int installments;
                 try {
@@ -340,12 +400,12 @@ public class BythephoneApp {
                     System.out.println("Selecciona una entidad válida.");
                     continue;
                 }
+
                 long financed = purchasePrice - downPayment;
                 long interest = Math.round(financed * rates[providerIndex]);
                 long repaymentTotal = financed + interest;
                 long monthlyPayment = (repaymentTotal + installments - 1) / installments;
-                String simulationNumber = "BT-CRED-"
-                        + UUID.randomUUID().toString().substring(0, 8).toUpperCase(Locale.ROOT);
+                String simulationNumber = "BT-CRED-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase(Locale.ROOT);
                 Map<String, Object> simulation = new LinkedHashMap<>();
                 simulation.put("number", simulationNumber);
                 simulation.put("purchase", purchaseName);
@@ -356,8 +416,7 @@ public class BythephoneApp {
                 System.out.println();
                 System.out.println("SIMULACIÓN " + simulationNumber);
                 System.out.println("Equipo o monto: " + purchaseName);
-                System.out.println("Entidad: " + providers[providerIndex]
-                        + " · tasa única del " + Math.round(rates[providerIndex] * 100) + "%");
+                System.out.println("Entidad: " + providers[providerIndex] + " · tasa única del " + Math.round(rates[providerIndex] * 100) + "%");
                 System.out.println("Valor de compra: " + money.apply(purchasePrice));
                 System.out.println("Cuota inicial: " + money.apply(downPayment));
                 System.out.println("Monto financiado: " + money.apply(financed));
@@ -372,9 +431,7 @@ public class BythephoneApp {
                 String search = readOptional.apply("Buscar (Enter para ver todas): ").toLowerCase(locale);
                 int found = 0;
                 for (int i = 0; i < faqQuestions.length; i++) {
-                    if (search.isEmpty()
-                            || faqQuestions[i].toLowerCase(locale).contains(search)
-                            || faqAnswers[i].toLowerCase(locale).contains(search)) {
+                    if (search.isEmpty() || faqQuestions[i].toLowerCase(locale).contains(search) || faqAnswers[i].toLowerCase(locale).contains(search)) {
                         System.out.println();
                         System.out.println("P: " + faqQuestions[i]);
                         System.out.println("R: " + faqAnswers[i]);
@@ -438,8 +495,7 @@ public class BythephoneApp {
                 boolean ticketExists;
                 String ticket;
                 do {
-                    ticket = "BT-ST-" + UUID.randomUUID()
-                            .toString().replace("-", "").substring(0, 10).toUpperCase(Locale.ROOT);
+                    ticket = "BT-ST-" + UUID.randomUUID().toString().replace("-", "").substring(0, 10).toUpperCase(Locale.ROOT);
                     ticketExists = false;
                     for (Map<String, Object> existingRequest : serviceRequests) {
                         if (ticket.equals(existingRequest.get("ticket"))) {
@@ -483,8 +539,7 @@ public class BythephoneApp {
                 }
                 System.out.println();
                 System.out.println("SEGUIMIENTO DE SERVICIO");
-                String requestedTicket = readOptional.apply(
-                        "Código del ticket (Enter para la solicitud más reciente): ").toUpperCase(Locale.ROOT);
+                String requestedTicket = readOptional.apply("Código del ticket (Enter para la solicitud más reciente): ").toUpperCase(Locale.ROOT);
                 Map<String, Object> request = null;
                 if (requestedTicket.isEmpty()) {
                     request = serviceRequests.get(serviceRequests.size() - 1);
@@ -501,8 +556,7 @@ public class BythephoneApp {
                     continue;
                 }
                 @SuppressWarnings("unchecked")
-                List<Map.Entry<String, LocalDateTime>> history =
-                        (List<Map.Entry<String, LocalDateTime>>) request.get("history");
+                List<Map.Entry<String, LocalDateTime>> history = (List<Map.Entry<String, LocalDateTime>>) request.get("history");
                 if ("7".equals(optionText)) {
                     for (int i = 0; i < statuses.length; i++) {
                         System.out.println((i + 1) + ". " + statuses[i]);
@@ -527,11 +581,8 @@ public class BythephoneApp {
                     System.out.println("Equipo: " + request.get("equipment"));
                     System.out.println("Tipo: " + request.get("requestType"));
                     System.out.println("Falla: " + request.get("failureDescription"));
-                    System.out.println("Dirección: " + request.get("address") + ", "
-                            + request.get("city") + ", " + request.get("department"));
-                    System.out.println("Recogida preferida: "
-                            + dateFormat.format((LocalDate) request.get("pickupDate"))
-                            + " · " + request.get("pickupTime"));
+                    System.out.println("Dirección: " + request.get("address") + ", " + request.get("city") + ", " + request.get("department"));
+                    System.out.println("Recogida preferida: " + dateFormat.format((LocalDate) request.get("pickupDate")) + " · " + request.get("pickupTime"));
                     System.out.println("Estado actual: " + currentStatus);
                     System.out.println("Línea de tiempo:");
                     for (int i = 0; i < statuses.length; i++) {
@@ -541,8 +592,7 @@ public class BythephoneApp {
                                 reached = true;
                             }
                         }
-                        String marker = statuses[i].equals(currentStatus) ? "[>] "
-                                : reached ? "[x] " : "[ ] ";
+                        String marker = statuses[i].equals(currentStatus) ? "[>] " : reached ? "[x] " : "[ ] ";
                         System.out.println(marker + statuses[i] + " — " + statusDescriptions[i]);
                         for (Map.Entry<String, LocalDateTime> entry : history) {
                             if (statuses[i].equals(entry.getKey())) {
@@ -554,9 +604,7 @@ public class BythephoneApp {
             } else if ("8".equals(optionText)) {
                 System.out.println();
                 System.out.println("ENVÍO Y CHECKOUT · simulación, no procesa pagos");
-                String[] sampleNames = {
-                    "Celular de muestra", "Celular 5G de muestra", "Celular premium de muestra"
-                };
+                String[] sampleNames = {"Celular de muestra", "Celular 5G de muestra", "Celular premium de muestra"};
                 long[] samplePrices = {799900, 1499900, 2399900};
                 for (int i = 0; i < sampleNames.length; i++) {
                     System.out.printf("%d. %s — %s%n", i + 1, sampleNames[i], money.apply(samplePrices[i]));
@@ -620,6 +668,7 @@ public class BythephoneApp {
                     System.out.println("Selecciona un método válido.");
                     continue;
                 }
+
                 long subtotal = 0;
                 for (Map.Entry<Integer, Integer> item : items.entrySet()) {
                     subtotal += samplePrices[item.getKey()] * item.getValue();
@@ -630,12 +679,9 @@ public class BythephoneApp {
                         ? ("girardota".equals(normalizedCity) ? 8000 : 15000)
                         : 25000;
                 String shippingZone = "Antioquia".equalsIgnoreCase(department)
-                        ? ("girardota".equals(normalizedCity)
-                                ? "Entrega local · Girardota" : "Envío departamental · Antioquia")
+                        ? ("girardota".equals(normalizedCity) ? "Entrega local · Girardota" : "Envío departamental · Antioquia")
                         : "Envío nacional · Colombia";
-                String[] paymentMethods = {
-                    "Tarjeta (simulación)", "Transferencia (simulación)", "Pago al recibir (simulación)"
-                };
+                String[] paymentMethods = {"Tarjeta (simulación)", "Transferencia (simulación)", "Pago al recibir (simulación)"};
                 String orderNumber = "BT-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase(Locale.ROOT);
                 Map<String, Object> order = new LinkedHashMap<>();
                 order.put("number", orderNumber);
@@ -655,8 +701,7 @@ public class BythephoneApp {
                 System.out.println("Dirección: " + address + ", " + city + ", " + department);
                 for (Map.Entry<Integer, Integer> item : items.entrySet()) {
                     int index = item.getKey();
-                    System.out.println(item.getValue() + " × " + sampleNames[index] + " — "
-                            + money.apply(samplePrices[index] * item.getValue()));
+                    System.out.println(item.getValue() + " × " + sampleNames[index] + " — " + money.apply(samplePrices[index] * item.getValue()));
                 }
                 System.out.println("Subtotal: " + money.apply(subtotal));
                 System.out.println("Envío: " + shippingZone + " · " + money.apply(shipping));
@@ -675,17 +720,31 @@ public class BythephoneApp {
                     }
                     System.out.println("Ingresa un correo válido.");
                 }
-                char[] password = readDemoPassword(input);
-                while (!hasLettersAndNumbers(password)) {
+                char[] password;
+                while (true) {
+                    java.io.Console console = System.console();
+                    if (console != null) {
+                        password = console.readPassword("Contraseña de prueba: ");
+                    } else {
+                        System.out.print("Contraseña de prueba: ");
+                        password = input.nextLine().toCharArray();
+                    }
+                    boolean hasLetter = false;
+                    boolean hasDigit = false;
+                    for (char ch : password) {
+                        if (Character.isLetter(ch)) {
+                            hasLetter = true;
+                        } else if (Character.isDigit(ch)) {
+                            hasDigit = true;
+                        }
+                    }
+                    if (password.length != 0 && hasLetter && hasDigit) {
+                        break;
+                    }
                     System.out.println("La contraseña debe incluir al menos una letra y un número.");
-                    password = readDemoPassword(input);
                 }
-                if (password.length == 0) {
-                    System.out.println("La contraseña de prueba no puede estar vacía.");
-                } else {
-                    System.out.println("Datos recibidos para la simulación de " + loginEmail + ".");
-                    System.out.println("No hay autenticación real; la contraseña no se muestra ni se guarda.");
-                }
+                System.out.println("Datos recibidos para la simulación de " + loginEmail + ".");
+                System.out.println("No hay autenticación real; la contraseña no se muestra ni se guarda.");
                 java.util.Arrays.fill(password, '\0');
                 System.out.println("Atención telefónica: +57 301 895 1862");
                 System.out.println("WhatsApp: https://wa.me/573018951862");
@@ -695,249 +754,7 @@ public class BythephoneApp {
             }
         }
 
-        System.out.println("La simulación terminó. Las cotizaciones, créditos, solicitudes y pedidos "
-                + "temporales fueron descartados.");
+        System.out.println("La simulación terminó. Las cotizaciones, créditos, solicitudes y pedidos temporales fueron descartados.");
         input.close();
-    }
-
-    private static char[] readDemoPassword(Scanner input) {
-        java.io.Console console = System.console();
-        if (console != null) {
-            char[] password = console.readPassword("Contraseña de prueba: ");
-            return password == null ? new char[0] : password;
-        }
-        System.out.print("Contraseña de prueba: ");
-        return input.nextLine().toCharArray();
-    }
-
-    private static boolean hasLettersAndNumbers(char[] password) {
-        if (password == null || password.length == 0) {
-            return false;
-        }
-        boolean hasLetter = false;
-        boolean hasDigit = false;
-        for (char ch : password) {
-            if (Character.isLetter(ch)) {
-                hasLetter = true;
-            } else if (Character.isDigit(ch)) {
-                hasDigit = true;
-            }
-        }
-        return hasLetter && hasDigit;
-    }
-
-    private static void catalogMenu(
-            Scanner input,
-            String[] brands,
-            String[] names,
-            long[] prices,
-            String[] specs,
-            String[] operatingSystems,
-            int[] ram,
-            int[] storage,
-            boolean[] fiveG,
-            String[] screens,
-            String[] cameras,
-            String[] batteries,
-            String[] processors,
-            String[] descriptions,
-            NumberFormat cop) {
-        List<Integer> interest = new ArrayList<>();
-        System.out.println();
-        System.out.println("INICIO · TECNOLOGÍA QUE TE CONECTA");
-        System.out.println("Bienvenido a Bythephone. Estos equipos y precios son de demostración.");
-        printCatalogProducts(allProductIndexes(names.length), brands, names, prices, specs, interest, cop);
-
-        boolean browsing = true;
-        while (browsing) {
-            System.out.println();
-            System.out.println("------------ OPCIONES DEL CATÁLOGO ------------");
-            System.out.println("1. Ver todos los equipos");
-            System.out.println("2. Filtrar y ordenar equipos");
-            System.out.println("3. Ver ficha técnica");
-            System.out.println("4. Agregar o quitar de la lista de interés");
-            System.out.println("5. Ver lista de interés");
-            System.out.println("6. Vaciar lista de interés");
-            System.out.println("0. Volver al menú principal");
-            System.out.print("Selecciona una opción: ");
-            String option = input.nextLine().trim();
-
-            if ("0".equals(option)) {
-                browsing = false;
-            } else if ("1".equals(option)) {
-                printCatalogProducts(allProductIndexes(names.length), brands, names, prices, specs, interest, cop);
-            } else if ("2".equals(option)) {
-                String brandFilter = readCatalogText(input, "Marca (Enter para todas): ").toLowerCase(Locale.ROOT);
-                String osFilter = readCatalogText(input, "Sistema operativo Android/iOS (Enter para cualquiera): ");
-                Long minPrice = readOptionalPrice(input, "Precio mínimo en COP (Enter para omitir): ");
-                Long maxPrice = readOptionalPrice(input, "Precio máximo en COP (Enter para omitir): ");
-                if (minPrice != null && maxPrice != null && minPrice > maxPrice) {
-                    System.out.println("El precio mínimo no puede superar el precio máximo.");
-                    continue;
-                }
-                int minRam = new int[] {0, 4, 6, 8, 12}[
-                    readCatalogChoice(input, "RAM mínima: 0. Cualquiera  1. 4 GB  2. 6 GB  3. 8 GB  4. 12 GB", 0, 4)];
-                int minStorage = new int[] {0, 128, 256, 512}[
-                    readCatalogChoice(input, "Almacenamiento mínimo: 0. Cualquiera  1. 128 GB  2. 256 GB  3. 512 GB", 0, 3)];
-                boolean requireFiveG = readCatalogChoice(input, "5G: 0. Cualquiera  1. Solo equipos 5G", 0, 1) == 1;
-                int sortChoice = readCatalogChoice(
-                        input, "Ordenar: 0. Recomendados  1. Menor precio  2. Mayor precio  3. Nombre", 0, 3);
-
-                List<Integer> matches = new ArrayList<>();
-                for (int i = 0; i < names.length; i++) {
-                    boolean matchesBrand = brandFilter.isEmpty()
-                            || brands[i].toLowerCase(Locale.ROOT).contains(brandFilter);
-                    boolean matchesOs = osFilter.isEmpty()
-                            || operatingSystems[i].equalsIgnoreCase(osFilter);
-                    boolean matchesMinPrice = minPrice == null || prices[i] >= minPrice;
-                    boolean matchesMaxPrice = maxPrice == null || prices[i] <= maxPrice;
-                    if (matchesBrand && matchesOs && matchesMinPrice && matchesMaxPrice
-                            && ram[i] >= minRam && storage[i] >= minStorage
-                            && (!requireFiveG || fiveG[i])) {
-                        matches.add(i);
-                    }
-                }
-
-                if (sortChoice == 1) {
-                    matches.sort((left, right) -> Long.compare(prices[left], prices[right]));
-                } else if (sortChoice == 2) {
-                    matches.sort((left, right) -> Long.compare(prices[right], prices[left]));
-                } else if (sortChoice == 3) {
-                    matches.sort((left, right) -> names[left].compareToIgnoreCase(names[right]));
-                }
-                printCatalogProducts(matches, brands, names, prices, specs, interest, cop);
-            } else if ("3".equals(option)) {
-                printCatalogProducts(allProductIndexes(names.length), brands, names, prices, specs, interest, cop);
-                int productIndex = readCatalogChoice(input, "Número del equipo para ver su ficha", 1, names.length) - 1;
-                printProductDetails(productIndex, brands, names, prices, specs, operatingSystems,
-                        ram, storage, fiveG, screens, cameras, batteries, processors, descriptions, cop);
-            } else if ("4".equals(option)) {
-                printCatalogProducts(allProductIndexes(names.length), brands, names, prices, specs, interest, cop);
-                int productIndex = readCatalogChoice(input, "Número del equipo para cambiar su lista de interés", 1, names.length) - 1;
-                if (interest.contains(productIndex)) {
-                    interest.remove(Integer.valueOf(productIndex));
-                    System.out.println(names[productIndex] + " se quitó de tu lista de interés.");
-                } else {
-                    interest.add(productIndex);
-                    System.out.println(names[productIndex] + " se agregó a tu lista de interés.");
-                }
-                System.out.println("Equipos en la lista: " + interest.size());
-            } else if ("5".equals(option)) {
-                if (interest.isEmpty()) {
-                    System.out.println("Tu lista de interés está vacía. Agrega equipos desde la opción 4.");
-                } else {
-                    printCatalogProducts(interest, brands, names, prices, specs, interest, cop);
-                    System.out.println("Puedes usar la opción 2 de Cotizaciones en el menú principal para crear una cotización.");
-                }
-            } else if ("6".equals(option)) {
-                interest.clear();
-                System.out.println("La lista de interés quedó vacía.");
-            } else {
-                System.out.println("Opción inválida. Selecciona un número del menú del catálogo.");
-            }
-        }
-        System.out.println("La lista de interés es temporal y se descarta al cerrar la aplicación.");
-    }
-
-    private static List<Integer> allProductIndexes(int productCount) {
-        List<Integer> indexes = new ArrayList<>();
-        for (int i = 0; i < productCount; i++) {
-            indexes.add(i);
-        }
-        return indexes;
-    }
-
-    private static void printCatalogProducts(
-            List<Integer> indexes,
-            String[] brands,
-            String[] names,
-            long[] prices,
-            String[] specs,
-            List<Integer> interest,
-            NumberFormat cop) {
-        System.out.println();
-        System.out.println("CATÁLOGO DE EQUIPOS · " + indexes.size()
-                + (indexes.size() == 1 ? " equipo" : " equipos"));
-        if (indexes.isEmpty()) {
-            System.out.println("No encontramos coincidencias. Prueba cambiando los filtros.");
-            return;
-        }
-        for (int index : indexes) {
-            String interestMark = interest.contains(index) ? " [EN TU LISTA DE INTERÉS]" : "";
-            System.out.printf("%d. %s %s — %s%s%n   %s%n",
-                    index + 1, brands[index], names[index], cop.format(prices[index]), interestMark, specs[index]);
-        }
-        System.out.println("Precios y existencias sujetos a confirmación.");
-    }
-
-    private static void printProductDetails(
-            int index,
-            String[] brands,
-            String[] names,
-            long[] prices,
-            String[] specs,
-            String[] operatingSystems,
-            int[] ram,
-            int[] storage,
-            boolean[] fiveG,
-            String[] screens,
-            String[] cameras,
-            String[] batteries,
-            String[] processors,
-            String[] descriptions,
-            NumberFormat cop) {
-        System.out.println();
-        System.out.println("FICHA TÉCNICA · " + brands[index] + " " + names[index]);
-        System.out.println("Precio de referencia: " + cop.format(prices[index]));
-        System.out.println("Resumen: " + descriptions[index]);
-        System.out.println("Pantalla: " + screens[index]);
-        System.out.println("Procesador: " + processors[index]);
-        System.out.println("Cámara: " + cameras[index]);
-        System.out.println("Batería: " + batteries[index]);
-        System.out.println("Sistema operativo: " + operatingSystems[index]);
-        System.out.println("Memoria RAM: " + ram[index] + " GB");
-        System.out.println("Almacenamiento: " + storage[index] + " GB");
-        System.out.println("Conectividad: " + (fiveG[index] ? "5G" : "4G LTE"));
-        System.out.println("Disponibilidad por confirmar. " + specs[index]);
-    }
-
-    private static String readCatalogText(Scanner input, String prompt) {
-        System.out.print(prompt);
-        return input.nextLine().trim();
-    }
-
-    private static int readCatalogChoice(Scanner input, String prompt, int minimum, int maximum) {
-        while (true) {
-            System.out.println(prompt);
-            System.out.print("Selecciona una opción (" + minimum + "-" + maximum + "): ");
-            try {
-                int value = Integer.parseInt(input.nextLine().trim());
-                if (value >= minimum && value <= maximum) {
-                    return value;
-                }
-            } catch (NumberFormatException exception) {
-                // Se vuelve a solicitar el dato para mantener la navegación activa.
-            }
-            System.out.println("Opción inválida.");
-        }
-    }
-
-    private static Long readOptionalPrice(Scanner input, String prompt) {
-        while (true) {
-            System.out.print(prompt);
-            String value = input.nextLine().trim();
-            if (value.isEmpty()) {
-                return null;
-            }
-            try {
-                long price = Long.parseLong(value.replace(".", "").replace(",", "").replace(" ", ""));
-                if (price >= 0) {
-                    return price;
-                }
-            } catch (NumberFormatException exception) {
-                // El valor se solicita de nuevo si no se puede interpretar como COP.
-            }
-            System.out.println("Ingresa un precio válido en COP o deja el campo vacío.");
-        }
     }
 }
